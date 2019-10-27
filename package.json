@@ -4,8 +4,11 @@
   "description": "nepestastic bot!",
   "main": "bot.js",
   "author": "vandelvan",
+  "scripts": {
+    "start": "node bot.js"
+  },
   "dependencies": {
-    "discord.io": "^2.5.3",
-    "winston": "^3.2.1"
+    "discord.js": "11.1.0",
+    "request": "2.81.0"
   }
 }
