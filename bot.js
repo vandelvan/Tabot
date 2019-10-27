@@ -17,9 +17,16 @@ client.on('message', msg => {
       msg.content === 'tavo' ||
       msg.content === 'tabo' ||
       msg.content === 'tavotas' ||
-      msg.content === 'tabotas' 
+      msg.content === 'tabotas' ||
+      msg.content === 'Tabotas' ||
+      msg.content === 'Tavotas' ||
+      msg.content === 'Tabo' ||
+      msg.content === 'Tavo'
     ) {
     msg.reply(randomTavo());
+  }
+  else if(msg.content === 'aiuda'){
+    msg.reply("Quien soy?");
   }
 
 });
@@ -40,7 +47,20 @@ function randomTavo(){
         "yayazo",
         "nomas a veces",
         "xd",
-        "wtf"
+        "wtf",
+        "dab",
+        "ñepestastico",
+        "bebesita",
+        "a veces",
+        "porcelana",
+        "porfabor",
+        "soy diosito",
+        "tabo",
+        "absorbo el alcohoooool",
+        "el chuky lozano",
+        "echese un dab",
+        "un mini justice",
+        "siono, siono"
     ]
     var no = Math.floor((Math.random() * frases.length));
     var frase = frases[no];
