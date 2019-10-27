@@ -1,0 +1,11 @@
+{
+  "name": "tabot",
+  "version": "1.0.0",
+  "description": "nepestastic bot!",
+  "main": "bot.js",
+  "author": "vandelvan",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "winston": "^3.2.1"
+  }
+}
