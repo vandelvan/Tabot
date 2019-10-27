@@ -28,42 +28,21 @@ client.on('message', msg => {
 client.login(auth.token);
 
 function randomTavo(){
-    var no = Math.floor((Math.random() * 10) + 1);
-    var frase = "xd"
-    switch(no){
-        case 1:
-            frase = "Sisa"
-            break;
-        case 2:
-            frase = "Ella e callaitaaaa"
-            break;
-        case 3:
-            frase = "Ñepe";
-            break;
-        case 4:
-            frase = "equisde";
-            break;
-        case 5:
-            frase = "yesorno race";
-            break;
-        case 6:
-            frase = "ay, xd";
-            break;
-        case 7:
-            frase = "si quieres, sino no";
-            break;
-        case 8:
-            frase = "grasa";
-            break;
-        case 9:
-            frase = "yayazo";
-            break;
-        case 10:
-            frase = "nomas a veces";
-            break;
-        default:
-            frase = "xd";
-            break;
-    }
+    var frases = [
+        "Sisa",
+        "Ella e callaitaaaa",
+        "Ñepe",
+        "equisde",
+        "yesorno race",
+        "ay, xd",
+        "si quieres, sino no",
+        "grasa",
+        "yayazo",
+        "nomas a veces",
+        "xd",
+        "wtf"
+    ]
+    var no = Math.floor((Math.random() * frases.length));
+    var frase = frases[no];
     return frase;
 }
