@@ -25,7 +25,7 @@ client.on('message', msg => {
 });
 
 // Initialize bot by connecting to the server
-client.login(auth.token);
+client.login(process.env.BOT_TOKEN);
 
 function randomTavo(){
     var frases = [
