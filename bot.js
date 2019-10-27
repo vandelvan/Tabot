@@ -40,7 +40,8 @@ function randomTavo(){
         "yayazo",
         "nomas a veces",
         "xd",
-        "wtf"
+        "wtf",
+        "daab"
     ]
     var no = Math.floor((Math.random() * frases.length));
     var frase = frases[no];
