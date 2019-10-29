@@ -22,6 +22,10 @@ client.on('message', msg => {
       msg.content === 'Tavotas' ||
       msg.content === 'Tabo' ||
       msg.content === 'Tavo' ||
+      msg.content === 'vato' ||
+      msg.content === 'Vato' ||
+      msg.content === 'bato' ||
+      msg.content === 'Bato' ||
       msg.content === 'diosito' ||
       msg.content === 'Diosito'
     ) {
@@ -63,7 +67,13 @@ function randomTavo(){
         "echese un dab",
         "un mini justice",
         "siono, siono",
-        "diosote"
+        "diosote",
+        "mi pichula",
+        "aaaaaaaa mipichula",
+        "._.XD",
+        "te pareces a yayazo",
+        "pito",
+        "puerca"
     ]
     var no = Math.floor((Math.random() * frases.length));
     var frase = frases[no];
