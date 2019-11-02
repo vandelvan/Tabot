@@ -5,13 +5,14 @@ const client = new Discord.Client();
 
 // Event listener when a user connected to the server.
 client.on('ready', () => {
+
+  client.user.setPresence( {
+    game:{
+      name:"Team Fortress 2"
+    } , status: 'idle' 
+  } )
   console.log(`Logged in as ${client.user.tag}!`);
 });
-client.user.setPresence( {
-  game:{
-    name:"Team Fortress 2"
-  } , status: 'idle' 
-} );
 // Event listener when a user sends a message in the chat.
 client.on('message', msg => {
 
