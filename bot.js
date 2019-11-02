@@ -1,7 +1,6 @@
 // Import libraries
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const auth = require('./auth.json');
 
 
 // Event listener when a user connected to the server.
@@ -14,24 +13,28 @@ client.on('message', msg => {
 
   // We check the message content and looks for the word "ping", so we can have the bot respond "pong"
   if (
-      msg.content === 'tavo' ||
-      msg.content === 'tabo' ||
-      msg.content === 'tavotas' ||
-      msg.content === 'tabotas' ||
-      msg.content === 'Tabotas' ||
-      msg.content === 'Tavotas' ||
-      msg.content === 'Tabo' ||
-      msg.content === 'Tavo' ||
-      msg.content === 'vato' ||
-      msg.content === 'Vato' ||
-      msg.content === 'bato' ||
-      msg.content === 'Bato' ||
-      msg.content === 'diosito' ||
-      msg.content === 'Diosito'
+      msg.content.includes('tavo')     ||
+      msg.content.includes('tabo')     ||
+      msg.content.includes('tavotas')  ||
+      msg.content.includes('tabotas')  ||
+      msg.content.includes('Tabotas')  ||
+      msg.content.includes('Tavotas')  ||
+      msg.content.includes('Tabo')     ||
+      msg.content.includes('Tavo')     ||
+      msg.content.includes('vato')     ||
+      msg.content.includes('Vato')     ||
+      msg.content.includes('bato')     ||
+      msg.content.includes('Bato')     ||
+      msg.content.includes('Tabot')    ||
+      msg.content.includes('Tavot')    ||
+      msg.content.includes('tabot')    ||
+      msg.content.includes('tavot')    ||
+      msg.content.includes('diosito')  ||
+      msg.content.includes('Diosito')
     ) {
     msg.reply(randomTavo());
   }
-  else if(msg.content === 'aiuda'){
+  else if(msg.content.includes('aiuda')){
     msg.reply("Quien soy?");
   }
 
@@ -73,7 +76,15 @@ function randomTavo(){
         "._.XD",
         "te pareces a yayazo",
         "pito",
-        "puerca"
+        "puerca",
+        "chalupas",
+        "chupas",
+        "pachulas",
+        "panda",
+        "xdiosito",
+        "diosote",
+        "ahhhhh",
+        "._.XD"
     ]
     var no = Math.floor((Math.random() * frases.length));
     var frase = frases[no];
