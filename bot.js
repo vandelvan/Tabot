@@ -46,7 +46,7 @@ client.on('message', msg => {
 });
 
 // Initialize bot by connecting to the server
-client.login("NjM4MDc4ODk1ODU3NTk4NDY1.XbYLoA.jvilETY_ZO0_Wl4Gz3HqQQoaA5A");
+client.login(process.env.BOT_TOKEN);
 
 function randomTavo(){
     var frases = [
