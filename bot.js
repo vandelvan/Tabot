@@ -37,6 +37,10 @@ client.on('message', msg => {
   else if(msg.content.includes('aiuda')){
     msg.reply("Quien soy?");
   }
+  else if(msg.content.includes("dab")){
+    const attachment = new MessageAttachment(randomImg());
+    msg.channel.send(attachment);
+  }
 
 });
 
@@ -89,4 +93,18 @@ function randomTavo(){
     var no = Math.floor((Math.random() * frases.length));
     var frase = frases[no];
     return frase;
+}
+
+function randomTavo(){
+  var imgs = [
+      "https://i.ytimg.com/vi/SrDatE8K6pc/maxresdefault.jpg",
+      "https://pbs.twimg.com/media/D_KVs-_XUAEM3Yh.jpg",
+      "http://pm1.narvii.com/7298/4679c582eda8f970711a06d032a355fbc7fe0e72r1-512-512v2_uhq.jpg",
+      "https://i.redd.it/0yg11k4ug6l31.jpg",
+      "https://pics.me.me/otis-44960217.png",
+      "https://pbs.twimg.com/media/Dq_AnwYU0AA_aLu.jpg"
+  ]
+  var no = Math.floor((Math.random() * imgs.length));
+  var img = imgs[no];
+  return img;
 }
