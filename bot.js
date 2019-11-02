@@ -38,14 +38,15 @@ client.on('message', msg => {
     msg.reply("Quien soy?");
   }
   else if(msg.content.includes("dab")){
-    const attachment = new MessageAttachment(randomImg());
-    msg.channel.send(attachment);
+    // const attachment = new MessageAttachment(randomImg());
+    // msg.channel.send(attachment);
+    msg.reply("div",{file:randomImg()});
   }
 
 });
 
 // Initialize bot by connecting to the server
-client.login(process.env.BOT_TOKEN);
+client.login("NjM4MDc4ODk1ODU3NTk4NDY1.XbYLoA.jvilETY_ZO0_Wl4Gz3HqQQoaA5A");
 
 function randomTavo(){
     var frases = [
@@ -95,7 +96,7 @@ function randomTavo(){
     return frase;
 }
 
-function randomTavo(){
+function randomImg(){
   var imgs = [
       "https://i.ytimg.com/vi/SrDatE8K6pc/maxresdefault.jpg",
       "https://pbs.twimg.com/media/D_KVs-_XUAEM3Yh.jpg",
