@@ -7,7 +7,11 @@ const client = new Discord.Client();
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
-
+client.setPresence( {
+  game:{
+    name:"Team Fortress 2"
+  } 
+} );
 // Event listener when a user sends a message in the chat.
 client.on('message', msg => {
 
