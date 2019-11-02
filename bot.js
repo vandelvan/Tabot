@@ -9,7 +9,7 @@ client.on('ready', () => {
     client.user.setPresence({
         game: {
             name: 'Team Fortress 2',
-            type: "Playing",
+            type: "Playing"
         }
     });
   console.log(`Logged in as ${client.user.tag}!`);
