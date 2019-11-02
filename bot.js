@@ -5,12 +5,7 @@ const client = new Discord.Client();
 
 // Event listener when a user connected to the server.
 client.on('ready', () => {
-
-  client.user.setPresence( {
-    game:{
-      name:"Team Fortress 2"
-    }
-  } )
+  client.user.setActivity('Team Fortress 2', { type: 'PLAYING' });
   console.log(`Logged in as ${client.user.tag}!`);
 });
 // Event listener when a user sends a message in the chat.
