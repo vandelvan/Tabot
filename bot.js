@@ -10,7 +10,7 @@ client.on('ready', () => {
 client.user.setPresence( {
   game:{
     name:"Team Fortress 2"
-  } 
+  } , status: 'idle' 
 } );
 // Event listener when a user sends a message in the chat.
 client.on('message', msg => {
