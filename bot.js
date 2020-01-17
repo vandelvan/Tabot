@@ -50,7 +50,7 @@ client.on('message', msg => {
   }
   else if(msg.content.includes('zona')  ||
           msg.content.includes('sona')){
-    msg.reply("Cual zona?");
+    msg.reply("Cual?");
     msg.reply(randomTavo());
   }
 
