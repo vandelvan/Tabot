@@ -48,6 +48,11 @@ client.on('message', msg => {
     // msg.channel.send(attachment);
     msg.reply("div",{file:randomImg()});
   }
+  else if(msg.content.includes('zona')  ||
+          msg.content.includes('sona')){
+    msg.reply("Cual zona?");
+    msg.reply(randomTavo());
+  }
 
 });
 
@@ -95,7 +100,10 @@ function randomTavo(){
         "xdiosito",
         "diosote",
         "ahhhhh",
-        "._.XD"
+        "._.XD",
+        "cual zona?",
+        "la cabezona",
+        "la panzona"
     ]
     var no = Math.floor((Math.random() * frases.length));
     var frase = frases[no];
@@ -109,7 +117,11 @@ function randomImg(){
       "http://pm1.narvii.com/7298/4679c582eda8f970711a06d032a355fbc7fe0e72r1-512-512v2_uhq.jpg",
       "https://i.redd.it/0yg11k4ug6l31.jpg",
       "https://pics.me.me/otis-44960217.png",
-      "https://pbs.twimg.com/media/Dq_AnwYU0AA_aLu.jpg"
+      "https://pbs.twimg.com/media/Dq_AnwYU0AA_aLu.jpg",
+      "https://media.makeameme.org/created/c-kronk.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYhwGi11CdFwBJ8PAMasok94eiwSB16yFckxsIlNtEOSlmKsCl",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXSR_la0OiSyqlf9WTv4cB_KExZRYkQrIud9uShJGM2smzehtM",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRifjMqzR8Rl2VGUESXYT2z_Hm4E_FB9iKqihDre_xgfr_51sXI"
   ]
   var no = Math.floor((Math.random() * imgs.length));
   var img = imgs[no];
