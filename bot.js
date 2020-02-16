@@ -43,6 +43,9 @@ client.on('message', msg => {
   else if(msg.content.includes('aiuda')){
     msg.reply("Quien soy?");
   }
+  else if(msg.content.includes('mox')){
+    msg.reply("Maldita sea. Quiero cogerme a max. Tengo mi cuarto lleno de posters de chochoneguer, todos los días me tocó pensando en sus musculos tallados por los dioses, de sólo pensar en su rostro creado por artesanos de tonala y su nariz perfecta ya dejo un charco abajo de mi. Mi mamá ya no me deja agendar con mox .");
+  }
   else if(msg.content.includes('que hora')){
     msg.reply("las horas del panzon");
   }
