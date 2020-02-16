@@ -43,6 +43,9 @@ client.on('message', msg => {
   else if(msg.content.includes('aiuda')){
     msg.reply("Quien soy?");
   }
+  else if(msg.content.includes('que hora')){
+    msg.reply("las horas del panzon");
+  }
   else if(msg.content.includes("dab")){
     // const attachment = new MessageAttachment(randomImg());
     // msg.channel.send(attachment);
