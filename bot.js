@@ -43,6 +43,9 @@ client.on('message', msg => {
   else if(msg.content.includes('aiuda')){
     msg.reply("Quien soy?");
   }
+  else if(msg.content.includes("cancion")){
+    msg.reply(randomcancion());
+  }
   else if(msg.content.includes("mox")){
     msg.reply("Maldita sea. Quiero cogerme a max. Tengo mi cuarto lleno de posters de chochoneguer, todos los días me tocó pensando en sus musculos tallados por los dioses, de sólo pensar en su rostro creado por artesanos de tonala y su nariz perfecta ya dejo un charco abajo de mi. Mi mamá ya no me deja agendar con max .");
   }
@@ -114,6 +117,21 @@ function randomTavo(){
     var no = Math.floor((Math.random() * frases.length));
     var frase = frases[no];
     return frase;
+}
+
+function randomcancion(){
+  var frases = [
+      "https://www.youtube.com/watch?v=acEOASYioGY",
+      "https://www.youtube.com/watch?v=L6aCaDqxRIc",
+      "https://www.youtube.com/watch?v=hCzfzeobeNM",
+      "https://www.youtube.com/watch?v=9FWgcBfs5A0",
+      "https://www.youtube.com/watch?v=H__qSOH8eOc",
+      "https://www.youtube.com/watch?v=Mt9WIUMEjUM",
+      "https://www.youtube.com/watch?v=6Dh-RL__uN4"
+  ]
+  var no = Math.floor((Math.random() * frases.length));
+  var frase = frases[no];
+  return frase;
 }
 
 function randomImg(){
