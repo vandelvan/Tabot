@@ -138,7 +138,9 @@ function randomcancion(){
       "https://www.youtube.com/watch?v=U06jlgpMtQs",
       "https://www.youtube.com/watch?v=vTIIMJ9tUc8",
       "https://www.youtube.com/watch?v=OLpeX4RRo28",
-      "https://www.youtube.com/watch?v=kJQP7kiw5Fk"
+      "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
+      "https://www.youtube.com/watch?v=8xUHkqkkDaw",
+      "https://www.youtube.com/watch?v=DYVIP3sdHBg"
   ]
   var no = Math.floor((Math.random() * frases.length));
   var frase = frases[no];
