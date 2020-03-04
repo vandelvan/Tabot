@@ -44,7 +44,6 @@ client.on('message', msg => {
     msg.reply("Quien soy?");
   }
   else if(msg.content.includes("cancion")){
-    msg.reply("Con esta cancion me la jalo");
     msg.reply(randomcancion());
   }
   else if(msg.content.includes("mox")){
