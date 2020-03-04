@@ -43,9 +43,6 @@ client.on('message', msg => {
   else if(msg.content.includes('aiuda')){
     msg.reply("Quien soy?");
   }
-  else if(msg.content.includes("cancion")){
-    msg.reply(randomcancion());
-  }
   else if(msg.content.includes("mox")){
     msg.reply("Maldita sea. Quiero cogerme a max. Tengo mi cuarto lleno de posters de chochoneguer, todos los días me tocó pensando en sus musculos tallados por los dioses, de sólo pensar en su rostro creado por artesanos de tonala y su nariz perfecta ya dejo un charco abajo de mi. Mi mamá ya no me deja agendar con max .");
   }
@@ -62,7 +59,9 @@ client.on('message', msg => {
     msg.reply("Cual?");
     msg.reply(randomTavo());
   }
-
+  if(msg.content.includes("cancion"||"escuchar"||"grammy")){
+    msg.reply(randomcancion());
+  }
 });
 
 // Initialize bot by connecting to the server
@@ -127,7 +126,19 @@ function randomcancion(){
       "https://www.youtube.com/watch?v=9FWgcBfs5A0",
       "https://www.youtube.com/watch?v=H__qSOH8eOc",
       "https://www.youtube.com/watch?v=Mt9WIUMEjUM",
-      "https://www.youtube.com/watch?v=6Dh-RL__uN4"
+      "https://www.youtube.com/watch?v=6Dh-RL__uN4",
+      "https://www.youtube.com/watch?v=mmKAn1MeB04",
+      "https://www.youtube.com/watch?v=ghr8EJ5D_qs",
+      "https://www.youtube.com/watch?v=-jAE3YGxFC0",
+      "https://www.youtube.com/watch?v=3-Z-pzxiUAs",
+      "https://www.youtube.com/watch?v=aBFlGhuVWYc",
+      "https://www.youtube.com/watch?v=tbneQDc2H3I",
+      "https://www.youtube.com/watch?v=h6k5qbt72Os",
+      "https://www.youtube.com/watch?v=0K4oym9Pw48",
+      "https://www.youtube.com/watch?v=U06jlgpMtQs",
+      "https://www.youtube.com/watch?v=vTIIMJ9tUc8",
+      "https://www.youtube.com/watch?v=OLpeX4RRo28",
+      "https://www.youtube.com/watch?v=kJQP7kiw5Fk"
   ]
   var no = Math.floor((Math.random() * frases.length));
   var frase = frases[no];
