@@ -60,7 +60,15 @@ client.on('message', msg => {
     msg.reply(randomTavo());
   }
   if(msg.content.includes("cancion"||"escuchar"||"grammy")){
-    msg.reply(randomcancion());
+    if (msg.member.voice.channel) {
+      const connection = await msg.member.voice.channel.join();
+      msg.reply("!clear");
+      msg.reply(randomcancion());
+      msg.reply("!s");
+      msg.member.voice.channel.leave();
+    } else {
+      msg.reply('Eljotodiceque?');
+    }
   }
 });
 
@@ -144,7 +152,7 @@ function randomcancion(){
   ]
   var no = Math.floor((Math.random() * frases.length));
   var frase = frases[no];
-  return frase;
+  return "!p "+frase;
 }
 
 function randomImg(){

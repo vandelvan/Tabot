@@ -1,6 +1,6 @@
 {
   "name": "tabot",
-  "version": "2.7.0",
+  "version": "3.0.1",
   "description": "nepestastic bot!",
   "main": "bot.js",
   "author": "vandelvan",
