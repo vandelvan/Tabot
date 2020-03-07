@@ -61,11 +61,11 @@ client.on('message', async msg => {
   }
   if(msg.content.includes("cancion"||"escuchar"||"grammy")){
     if (msg.member.voice.channel) {
-      const connection = await msg.member.voice.channel.join();
+      const connection = await msg.member.voiceChannel.join();
       msg.reply("!clear");
       msg.reply(randomcancion());
       msg.reply("!s");
-      msg.member.voice.channel.leave();
+      msg.member.voiceChannel.leave();
     } else {
       msg.reply('Eljotodiceque?');
     }
