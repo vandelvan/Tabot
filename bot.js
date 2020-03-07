@@ -15,7 +15,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 // Event listener when a user sends a message in the chat.
-client.on('message', msg => {
+client.on('message', async msg => {
 
   // We check the message content and looks for the word "ping", so we can have the bot respond "pong"
   if (
