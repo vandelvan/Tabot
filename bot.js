@@ -62,10 +62,9 @@ client.on('message', async msg => {
   if(msg.content.includes("cancion"||"escuchar"||"grammy")){
     if (msg.member.voice.channel) {
       const connection = await msg.member.voice.channel.join();
-      msg.reply("!clear");
-      msg.reply(randomcancion());
-      msg.reply("!s");
-      setTimeout(msg.member.voice.channel.leave(), 10000); //se sale del chat de voz despues de 10 secs
+      const ytdl = require('ytdl-core');
+      connection.play(ytdl(randomcancion(), { filter: 'audioonly' }));
+      setTimeout(msg.member.voice.channel.leave(), 300000); //se sale del chat de voz despues de 5mins
     } else {
       msg.reply('Eljotodiceque?');
     }
