@@ -59,12 +59,14 @@ client.on('message', async msg => {
     msg.reply("Cual?");
     msg.reply(randomTavo());
   }
-  if(msg.content.includes("cancion"||"escuchar"||"grammy")){
+  if(msg.content.includes("cancion")  ||
+     msg.content.includes("grammy")   ||
+     msg.content.includes("escuchar")){
     if (msg.member.voice.channel) {
       const connection = await msg.member.voice.channel.join();
       const ytdl = require('ytdl-core');
       connection.play(ytdl(randomcancion(), { filter: 'audioonly' }));
-      setTimeout(msg.member.voice.channel.leave(), 300000); //se sale del chat de voz despues de 5mins
+      // setTimeout(msg.member.voice.channel.leave(), 300000); //se sale del chat de voz despues de 5mins
     } else {
       msg.reply('Eljotodiceque?');
     }
