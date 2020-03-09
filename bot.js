@@ -60,8 +60,8 @@ client.on('message', async msg => {
     msg.reply(randomTavo());
   }
   if(msg.content.includes("cancion"||"escuchar"||"grammy")){
-    if (message.member.voice.channel) {
-      const connection = await message.member.voice.channel.join();
+    if (msg.member.voice.channel) {
+      const connection = await msg.member.voice.channel.join();
       msg.reply("!clear");
       msg.reply(randomcancion());
       msg.reply("!s");
