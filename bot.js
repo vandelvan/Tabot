@@ -65,7 +65,7 @@ client.on('message', async msg => {
       msg.reply("!clear");
       msg.reply(randomcancion());
       msg.reply("!s");
-      msg.member.voice.channel.leave();
+      setTimeout(msg.member.voice.channel.leave(), 10000); //se sale del chat de voz despues de 10 secs
     } else {
       msg.reply('Eljotodiceque?');
     }
