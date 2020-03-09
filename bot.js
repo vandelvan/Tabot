@@ -65,6 +65,7 @@ client.on('message', async msg => {
       msg.reply("!clear");
       msg.reply(randomcancion());
       msg.reply("!s");
+      msg.member.voice.channel.leave();
     } else {
       msg.reply('Eljotodiceque?');
     }
