@@ -15,7 +15,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 // Event listener when a user sends a message in the chat.
-client.on('message', msg => {
+client.on('message', async msg => {
 
   // We check the message content and looks for the word "ping", so we can have the bot respond "pong"
   if (
@@ -60,15 +60,11 @@ client.on('message', msg => {
     msg.reply(randomTavo());
   }
   if(msg.content.includes("cancion"||"escuchar"||"grammy")){
-    if (msg.member.voiceChannel) {
-      msg.member.voiceChannel.join()
-      .then(connection => {
-        msg.reply("!clear");
-        msg.reply(randomcancion());
-        msg.reply("!s");
-        msg.member.voiceChannel.leave();
-      })
-      .catch(console.log);;
+    if (message.member.voice.channel) {
+      const connection = await message.member.voice.channel.join();
+      msg.reply("!clear");
+      msg.reply(randomcancion());
+      msg.reply("!s");
     } else {
       msg.reply('Eljotodiceque?');
     }
