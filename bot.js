@@ -159,7 +159,6 @@ function randomcancion(){
 function randomImg(){
   var imgs = [
       "https://i.ytimg.com/vi/SrDatE8K6pc/maxresdefault.jpg",
-      "https://pbs.twimg.com/media/D_KVs-_XUAEM3Yh.jpg",
       "http://pm1.narvii.com/7298/4679c582eda8f970711a06d032a355fbc7fe0e72r1-512-512v2_uhq.jpg",
       "https://i.redd.it/0yg11k4ug6l31.jpg",
       "https://pics.me.me/otis-44960217.png",
