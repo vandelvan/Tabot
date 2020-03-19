@@ -50,9 +50,9 @@ client.on('message', async msg => {
     msg.reply("las horas del panzon");
   }
   else if(msg.content.includes("dab")){
-    // const attachment = new MessageAttachment(randomImg());
-    // msg.channel.send(attachment);
-    msg.reply("div",{file:randomImg()});
+    const attachment = new MessageAttachment(randomImg());
+    msg.channel.send(attachment);
+    // msg.reply("div",{file:randomImg()});
   }
   else if(msg.content.includes('zona')  ||
           msg.content.includes('sona')){
@@ -128,7 +128,7 @@ function randomTavo(){
 }
 
 function randomcancion(){
-  var frases = [
+  var rolas = [
       "https://www.youtube.com/watch?v=acEOASYioGY",
       "https://www.youtube.com/watch?v=L6aCaDqxRIc",
       "https://www.youtube.com/watch?v=hCzfzeobeNM",
@@ -151,9 +151,9 @@ function randomcancion(){
       "https://www.youtube.com/watch?v=8xUHkqkkDaw",
       "https://www.youtube.com/watch?v=DYVIP3sdHBg"
   ]
-  var no = Math.floor((Math.random() * frases.length));
-  var frase = frases[no];
-  return "!p "+frase;
+  var no = Math.floor((Math.random() * rolas.length));
+  var rola = rolas[no];
+  return "!p "+rola;
 }
 
 function randomImg(){
