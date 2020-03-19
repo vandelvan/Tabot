@@ -50,7 +50,7 @@ client.on('message', async msg => {
     msg.reply("las horas del panzon");
   }
   else if(msg.content.includes("dab")){
-    const attachment = new MessageAttachment(randomImg());
+    const attachment = new Discord.MessageAttachment(randomImg());
     msg.channel.send(attachment);
     // msg.reply("div",{file:randomImg()});
   }
