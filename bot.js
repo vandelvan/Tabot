@@ -17,7 +17,7 @@ client.on('ready', () => {
 // Event listener when a user sends a message in the chat.
 client.on('message', async msg => {
 
-  // We check the message content and looks for the word "ping", so we can have the bot respond "pong"
+  msg.react(randomEmoji());
   if (
       msg.content.includes('tavo')     ||
       msg.content.includes('tabo')     ||
@@ -171,4 +171,24 @@ function randomImg(){
   var no = Math.floor((Math.random() * imgs.length));
   var img = imgs[no];
   return img;
+}
+
+
+function randomEmoji(){
+  var emoji = [
+      "😩",
+      "💯",
+      "🅱",
+      "🔥",
+      "💦",
+      "👌",
+      "😭",
+      "😣",
+      "😤",
+      "🍆",
+      "😳"
+  ]
+  var no = Math.floor((Math.random() * emoji.length));
+  var em = emoji[no];
+  return em;
 }
