@@ -186,7 +186,10 @@ function randomEmoji(){
       "😣",
       "😤",
       "🍆",
-      "😳"
+      "😳",
+      "🗿",
+      "😍",
+      "🖕"
   ]
   var no = Math.floor((Math.random() * emoji.length));
   var em = emoji[no];
