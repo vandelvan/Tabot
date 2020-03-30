@@ -5,9 +5,8 @@ const client = new Discord.Client();
 // Event listener when a user connected to the server.
 client.on("ready", () => {
   client.user
-    .setActivity("Dabeando", {
-      type: "LISTENING",
-      url: "https://open.spotify.com/artist/1vgJilzDeVio0hWQnGFPXJ"
+    .setActivity("chill of the monsters - vandelvan", {
+      type: "LISTENING"
     })
     .then(console.log)
     .catch(console.error);
