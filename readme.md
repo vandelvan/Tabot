@@ -6,6 +6,3 @@ Recordando esto, desarrollé un "Tabot" el cual al llamarlo diciendo "tavo", "ta
 
 añadanlo a su servidor de discord aquí: https://discordapp.com/oauth2/authorize?&client_id=638078895857598465&scope=bot&permissions=8
 
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K1QZTI)
-
-[![patreon](https://c5.patreon.com/external/logo/become_a_patron_button@2x.png)](https://www.patreon.com/bePatron?u=25201302)
