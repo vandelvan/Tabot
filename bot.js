@@ -201,9 +201,7 @@ function randomEmoji() {
 }
 
 function getCommitsRepos() {
-  const channel = client.guild.channels.cache.find(
-    (ch) => ch.name === "avisos"
-  );
+  const channel = client.channels.cache.get("678456371171033088");
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
   octokit.repos
