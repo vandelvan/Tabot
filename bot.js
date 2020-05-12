@@ -196,8 +196,8 @@ function randomEmoji() {
 function getCommitsRepos() {
   console.log(
     octokit.repos.listCommits({
-      vandelvan,
-      Decodificador,
+      owner: "vandelvan",
+      repo: "Decodificador"
     })
   );
 }
