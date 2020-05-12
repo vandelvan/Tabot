@@ -201,6 +201,6 @@ function getCommitsRepos() {
     })
     .then((value) => {
       console.log(value);
-      getCommitsRepos();
+      // getCommitsRepos();
     });
 }
