@@ -206,8 +206,8 @@ function getCommitsRepos() {
         lastCommitDeco = value.data[0].sha;
 
       }
-      // console.log("Ultimo: ",value.data[0]);
-      console.log("committer: ",value.data[0].author.name);
+      console.log("Ultimo: ",value.data[0].sha);
+      console.log("committer: ",value.data[0].author);
       console.log("mensaje: ",value.data[0].commit.message);
       
       
