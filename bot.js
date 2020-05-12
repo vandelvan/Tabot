@@ -13,7 +13,7 @@ client.on("ready", () => {
     .then(console.log)
     .catch(console.error);
   console.log(`Logged in as ${client.user.tag}!`);
-  setInterval(getCommitsRepos,5000);
+  getCommitsRepos();
 });
 // Event listener when a user sends a message in the chat.
 client.on("message", async (msg) => {
@@ -194,10 +194,15 @@ function randomEmoji() {
 }
 
 function getCommitsRepos() {
-  console.log(
-    octokit.repos.listCommits({
-      owner: "vandelvan",
-      repo: "Decodificador"
-    })
-  );
+  console
+    .log(
+      octokit.repos.listCommits({
+        owner: "vandelvan",
+        repo: "Decodificador",
+      })
+    )
+    .then((value) => {
+      console.log(value);
+      getCommitsRepos();
+    });
 }
