@@ -200,7 +200,7 @@ function getCommitsRepos() {
       repo: "Decodificador",
     })
     .then((value) => {
-      console.log(value);
+      console.log(value.data[0]);
       // getCommitsRepos();
     });
 }
