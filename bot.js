@@ -201,6 +201,11 @@ function randomEmoji() {
 }
 
 function getCommitsRepos() {
+  const channel = client.guild.channels.cache.find(
+    (ch) => ch.name === "avisos"
+  );
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
   octokit.repos
     .listCommits({
       owner: "vandelvan",
@@ -211,15 +216,13 @@ function getCommitsRepos() {
         lastCommitDeco = value.data[0].sha;
         autorDeco = value.data[0].author.login;
         cambioDeco = value.data[0].commit.message;
-        client.channels
-          .get("678456371171033088")
-          .send(
-            "`" +
-              autorDeco +
-              "` Realizo: `" +
-              cambioDeco +
-              "` en el repo de Decodificador xd"
-          );
+        channel.send(
+          "`" +
+            autorDeco +
+            "` Realizo: `" +
+            cambioDeco +
+            "` en el repo de Decodificador xd"
+        );
       }
     });
 
@@ -233,15 +236,13 @@ function getCommitsRepos() {
         lastCommitData = value.data[0].sha;
         autorData = value.data[0].author.login;
         cambioData = value.data[0].commit.message;
-        client.channels
-          .get("678456371171033088")
-          .send(
-            "`" +
-              autorData +
-              "` Realizo: `" +
-              cambioData +
-              "` en el repo de Datapath xd"
-          );
+        channel.send(
+          "`" +
+            autorData +
+            "` Realizo: `" +
+            cambioData +
+            "` en el repo de Datapath xd"
+        );
       }
     });
   setTimeout(function () {
