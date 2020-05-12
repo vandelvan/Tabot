@@ -1,19 +1,22 @@
 // Import libraries
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const { Octokit } = require("@octokit/rest");
+const octokit = new Octokit();
 
 // Event listener when a user connected to the server.
 client.on("ready", () => {
   client.user
     .setActivity("chill of the monsters - vandelvan", {
-      type: "LISTENING"
+      type: "LISTENING",
     })
     .then(console.log)
     .catch(console.error);
   console.log(`Logged in as ${client.user.tag}!`);
+  setInterval(getCommitsRepos,5000);
 });
 // Event listener when a user sends a message in the chat.
-client.on("message", async msg => {
+client.on("message", async (msg) => {
   msg.react(randomEmoji());
   if (
     msg.content.includes("tavo") ||
@@ -115,7 +118,7 @@ function randomTavo() {
     "._.XD",
     "cual zona?",
     "la cabezona",
-    "la panzona"
+    "la panzona",
   ];
   var no = Math.floor(Math.random() * frases.length);
   var frase = frases[no];
@@ -144,7 +147,7 @@ function randomcancion() {
     "https://www.youtube.com/watch?v=OLpeX4RRo28",
     "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
     "https://www.youtube.com/watch?v=8xUHkqkkDaw",
-    "https://www.youtube.com/watch?v=DYVIP3sdHBg"
+    "https://www.youtube.com/watch?v=DYVIP3sdHBg",
   ];
   var no = Math.floor(Math.random() * rolas.length);
   var rola = rolas[no];
@@ -161,7 +164,7 @@ function randomImg() {
     "https://media.makeameme.org/created/c-kronk.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYhwGi11CdFwBJ8PAMasok94eiwSB16yFckxsIlNtEOSlmKsCl",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXSR_la0OiSyqlf9WTv4cB_KExZRYkQrIud9uShJGM2smzehtM",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRifjMqzR8Rl2VGUESXYT2z_Hm4E_FB9iKqihDre_xgfr_51sXI"
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRifjMqzR8Rl2VGUESXYT2z_Hm4E_FB9iKqihDre_xgfr_51sXI",
   ];
   var no = Math.floor(Math.random() * imgs.length);
   var img = imgs[no];
@@ -183,9 +186,18 @@ function randomEmoji() {
     "😳",
     "🗿",
     "😍",
-    "🖕"
+    "🖕",
   ];
   var no = Math.floor(Math.random() * emoji.length);
   var em = emoji[no];
   return em;
+}
+
+function getCommitsRepos() {
+  console.log(
+    octokit.repos.listCommits({
+      vandelvan,
+      Decodificador,
+    })
+  );
 }
