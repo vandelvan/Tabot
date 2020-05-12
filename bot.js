@@ -4,6 +4,8 @@ const client = new Discord.Client();
 const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
 
+var lastCommit = "";
+
 // Event listener when a user connected to the server.
 client.on("ready", () => {
   client.user
@@ -200,7 +202,10 @@ function getCommitsRepos() {
       repo: "Decodificador",
     })
     .then((value) => {
-      console.log(value.data[0]);
+      lastCommit = value.data[0]; 
+      console.log("Ultimo: ",lastCommit);
+      console.log("sha: ",lastCommit.sha);
+      
       // getCommitsRepos();
     });
 }
