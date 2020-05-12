@@ -207,7 +207,7 @@ function getCommitsRepos() {
 
       }
       console.log("Ultimo: ",value.data[0].sha);
-      console.log("committer: ",value.data[0].author);
+      console.log("committer: ",value.data[0].author.login);
       console.log("mensaje: ",value.data[0].commit.message);
       
       
