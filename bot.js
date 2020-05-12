@@ -5,6 +5,11 @@ const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
 
 var lastCommitDeco = "";
+var autorDeco = "";
+var cambioDeco = "";
+var lastCommitData = "";
+var autorData = "";
+var cambioData = "";
 
 // Event listener when a user connected to the server.
 client.on("ready", () => {
@@ -202,15 +207,44 @@ function getCommitsRepos() {
       repo: "Decodificador",
     })
     .then((value) => {
-      if(lastCommitDeco == "" || lastCommitDeco != value.data[0].sha){
+      if (lastCommitDeco == "" || lastCommitDeco != value.data[0].sha) {
         lastCommitDeco = value.data[0].sha;
-
+        autorDeco = value.data[0].author.login;
+        cambioDeco = value.data[0].commit.message;
+        client.channels
+          .get("678456371171033088")
+          .send(
+            "`" +
+              autorDeco +
+              "` Realizo: `" +
+              cambioDeco +
+              "` en el repo de Decodificador xd"
+          );
       }
-      console.log("Ultimo: ",value.data[0].sha);
-      console.log("committer: ",value.data[0].author.login);
-      console.log("mensaje: ",value.data[0].commit.message);
-      
-      
-      // getCommitsRepos();
     });
+
+  octokit.repos
+    .listCommits({
+      owner: "vandelvan",
+      repo: "Datapath",
+    })
+    .then((value) => {
+      if (lastCommitData == "" || lastCommitData != value.data[0].sha) {
+        lastCommitData = value.data[0].sha;
+        autorData = value.data[0].author.login;
+        cambioData = value.data[0].commit.message;
+        client.channels
+          .get("678456371171033088")
+          .send(
+            "`" +
+              autorData +
+              "` Realizo: `" +
+              cambioData +
+              "` en el repo de Datapath xd"
+          );
+      }
+    });
+  setTimeout(function () {
+    getCommitsRepos();
+  }, 600000); //cada 10 mins
 }
