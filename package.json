@@ -13,6 +13,7 @@
     "ffmpeg-binaries":"3.2.2-3",
     "@discordjs/opus":"0.1.0",
     "ytdl-core": "2.0.0",
-    "request": "2.88.02"
+    "request": "2.88.02",
+    "@octokit/rest": "17.9.0"
   }
 }
