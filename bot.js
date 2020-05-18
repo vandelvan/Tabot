@@ -24,7 +24,10 @@ client.on("ready", () => {
 });
 // Event listener when a user sends a message in the chat.
 client.on("message", async (msg) => {
-  msg.react(randomEmoji());
+  if(Math.floor(Math.random() * 5) == 1)
+  {
+    msg.react(randomEmoji());
+  }
   if (
     msg.content.includes("tavo") ||
     msg.content.includes("tabo") ||
