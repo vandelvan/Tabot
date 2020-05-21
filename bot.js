@@ -86,6 +86,7 @@ client.login(process.env.BOT_TOKEN);
 
 function randomTavo() {
   var frases = [
+    "claro cielo pero no mates a nadie porfavor",
     "Sisa",
     "Ella e callaitaaaa",
     "Ñepe",
