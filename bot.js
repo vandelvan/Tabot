@@ -3,6 +3,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
+const request = require("request");
+const cheerio = require("cheerio");
 
 var lastCommitDeco = "";
 var autorDeco = "";
@@ -21,6 +23,7 @@ client.on("ready", () => {
     .catch(console.error);
   console.log(`Logged in as ${client.user.tag}!`);
   // getCommitsRepos(); DEPRECATED until another project comes
+  getCucei();
 });
 // Event listener when a user sends a message in the chat.
 client.on("message", async (msg) => {
@@ -267,4 +270,37 @@ function getCommitsRepos() {
   setTimeout(function () {
     getCommitsRepos();
   }, 600000); //cada 10 mins
+}
+
+//metodo para nuevas publicaciones de INCO/DIVEC
+function getCucei() {
+  request({
+    uri: "https://www.facebook.com/ing.cucei"
+  }, function(error, response, body){
+    var $ = cheerio.load(body);
+    console.log($);
+    
+  });  
+  // octokit.repos
+  //   .listCommits({
+  //     owner: "vandelvan",
+  //     repo: "Datapath",
+  //   })
+  //   .then((value) => {
+  //     if (lastCommitData == "" || lastCommitData != value.data[0].sha) {
+  //       lastCommitData = value.data[0].sha;
+  //       autorData = value.data[0].author.login;
+  //       cambioData = value.data[0].commit.message;
+  //       channel.send(
+  //         "`" +
+  //           autorData +
+  //           "` Realizo: `" +
+  //           cambioData +
+  //           "` en el repo de Datapath xd"
+  //       );
+  //     }
+  //   });
+  // setTimeout(function () {
+  //   getCommitsRepos();
+  // }, 600000); //cada 10 mins
 }

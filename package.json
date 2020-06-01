@@ -1,6 +1,6 @@
 {
   "name": "tabot",
-  "version": "3.0.1",
+  "version": "5.0.0",
   "description": "nepestastic bot!",
   "main": "bot.js",
   "author": "vandelvan",
@@ -14,6 +14,7 @@
     "@discordjs/opus":"0.1.0",
     "ytdl-core": "2.0.0",
     "request": "2.88.02",
-    "@octokit/rest": "17.9.0"
+    "@octokit/rest": "17.9.0",
+    "cheerio": "1.0.0-rc.3"
   }
 }
