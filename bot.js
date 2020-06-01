@@ -18,8 +18,7 @@ client.on("ready", () => {
   client.user
     .setActivity("chillin' at twitch", {
       type: "STREAMING",
-      url: "https://www.twitch.tv/vandelvan",
-      emoji: "🍜"
+      url: "https://www.twitch.tv/vandelvan"
     })
     .then(console.log)
     .catch(console.error);
@@ -281,7 +280,7 @@ function getCucei() {
   }, function(error, response, body){
     var $ = cheerio.load(body);
     $("div").each(function(){
-      console.warn($(this));
+      console.warn($('[xml\\:@id="mount_0_0"]'));
     });
     
   });  
