@@ -16,8 +16,9 @@ var cambioData = "";
 // Event listener when a user connected to the server.
 client.on("ready", () => {
   client.user
-    .setActivity("chill of the monsters - vandelvan", {
-      type: "LISTENING",
+    .setActivity("chillin' at twitch", {
+      type: "STREAMING",
+      url: "https://www.twitch.tv/vandelvan"
     })
     .then(console.log)
     .catch(console.error);
@@ -278,7 +279,7 @@ function getCucei() {
     uri: "https://www.facebook.com/ing.cucei"
   }, function(error, response, body){
     var $ = cheerio.load(body);
-    console.log($);
+    console.log(body);
     
   });  
   // octokit.repos
