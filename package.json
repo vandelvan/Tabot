@@ -15,6 +15,6 @@
     "ytdl-core": "2.0.0",
     "request": "2.88.02",
     "@octokit/rest": "17.9.0",
-    "cheerio": "1.0.0-rc.3"
+    "puppeteer": "3.2.0"
   }
 }

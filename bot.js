@@ -3,8 +3,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
-const request = require("request");
-const cheerio = require("cheerio");
+const puppeteer = require("puppeteer");
 
 var lastCommitDeco = "";
 var autorDeco = "";
@@ -275,15 +274,28 @@ function getCommitsRepos() {
 
 //metodo para nuevas publicaciones de INCO/DIVEC
 function getCucei() {
-  request({
-    uri: "https://www.facebook.com/ing.cucei"
-  }, function(error, response, body){
-    var $ = cheerio.load(body);
-    $("div").each(function(){
-      console.warn($('div:nth-child(15)'));
+  const scrapeIngComp = async() => {
+    const browser = await puppeteer.launch( { headless: true } );
+    const page = await browser.newPage();
+
+    await page.goto("https://www.facebook.com/ing.cucei");
+
+    await page.waitForSelector('img', {
+      visible: true
     });
+
+    const data = await page.evaluate(() => {
+      const posts = document.querySelectorAll('div');
+
+      const urls = Array.from(posts).map(v => v.p);
+      return urls;
+    });
+
+    await browser.close();
+    console.log(data);
     
-  });  
+
+  }
   // octokit.repos
   //   .listCommits({
   //     owner: "vandelvan",
