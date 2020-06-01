@@ -30,25 +30,24 @@ client.on("message", async (msg) => {
   }
   else if(Math.floor(Math.random() * 5) == 2)
   {
-    try{
-      await msg.react('🅱️');
-      await msg.react('🅰️');
-      await msg.react('🅱️');
-      await msg.react('🅾️');
-    } catch(error){
-      console.error("fallo algo al reaccionar");
+      msg.react('🅱️')
+      .then(() => msg.react('🅰️'))
+      .then(() => msg.react('🅱️'))
+      .then(() => msg.react('🅾️'))
+      .catch(() => console.error("fallo algo al reaccionar"));
     }
   }
   if (
-    msg.content.toLowerCase().toLowerCase().includes("tavo") ||
-    msg.content.toLowerCase().includes("tabo") ||
+    msg.content.toLowerCase().includes("tavo")    ||
+    msg.content.toLowerCase().includes("tabo")    ||
     msg.content.toLowerCase().includes("tavotas") ||
     msg.content.toLowerCase().includes("tabotas") ||
-    msg.content.toLowerCase().includes("vato") ||
-    msg.content.toLowerCase().includes("bato") ||
-    msg.content.toLowerCase().includes("tabot") ||
-    msg.content.toLowerCase().includes("tavot") ||
+    msg.content.toLowerCase().includes("vato")    ||
+    msg.content.toLowerCase().includes("bato")    ||
+    msg.content.toLowerCase().includes("tabot")   ||
+    msg.content.toLowerCase().includes("tavot")   ||
     msg.content.toLowerCase().includes("diosito") ||
+    msg.content.toLowerCase().includes("babo")    ||
     msg.content.toLowerCase().includes("dios")
   ) {
     msg.reply(randomTavo());
