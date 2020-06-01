@@ -28,12 +28,19 @@ client.on("message", async (msg) => {
   {
     msg.react(randomEmoji());
   }
-  else if(Math.floor(Math.random() * 5) == 2)
+  else if(Math.floor(Math.random() * 10) == 2)
   {
       msg.react('🅱️')
       .then(() => msg.react('🅰️'))
-      .then(() => msg.react('\:regional_indicator_b:'))
+      .then(() => msg.react('🇧'))
       .then(() => msg.react('🅾️'))
+      .catch(() => console.error("fallo algo al reaccionar"));
+  }
+  else if(Math.floor(Math.random() * 10) == 5)
+  {
+      msg.react('🇩')
+      .then(() => msg.react('🇦'))
+      .then(() => msg.react('🇧'))
       .catch(() => console.error("fallo algo al reaccionar"));
   }
   if (
