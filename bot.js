@@ -36,7 +36,7 @@ client.on("message", async (msg) => {
       .then(() => msg.react('🅾️'))
       .catch(() => console.error("fallo algo al reaccionar"));
   }
-  else if(Math.floor(Math.random() * 10) == 10)
+  else if(Math.floor(Math.random() * 10) == 9)
   {
       msg.react('🅱️')
       .then(() => msg.react('🅰️'))
@@ -147,6 +147,8 @@ function randomTavo() {
     "cual zona?",
     "la cabezona",
     "la panzona",
+    "sabroso",
+    "pana sonic"
   ];
   var no = Math.floor(Math.random() * frases.length);
   var frase = frases[no];
@@ -188,7 +190,9 @@ function randomImg() {
     "https://i.redd.it/0yg11k4ug6l31.jpg",
     "https://pics.me.me/otis-44960217.png",
     "https://pbs.twimg.com/media/Dq_AnwYU0AA_aLu.jpg",
-    "https://media.makeameme.org/created/c-kronk.jpg"
+    "https://media.makeameme.org/created/c-kronk.jpg",
+    "https://i.ytimg.com/vi/N1z9k2R3hww/maxresdefault.jpg",
+    "https://i.redd.it/ul95f16s5eh41.jpg"
   ];
   var no = Math.floor(Math.random() * imgs.length);
   var img = imgs[no];
