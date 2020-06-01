@@ -35,7 +35,6 @@ client.on("message", async (msg) => {
       .then(() => msg.react('🅱️'))
       .then(() => msg.react('🅾️'))
       .catch(() => console.error("fallo algo al reaccionar"));
-    }
   }
   if (
     msg.content.toLowerCase().includes("tavo")    ||
