@@ -36,6 +36,15 @@ client.on("message", async (msg) => {
       .then(() => msg.react('🅾️'))
       .catch(() => console.error("fallo algo al reaccionar"));
   }
+  else if(Math.floor(Math.random() * 10) == 10)
+  {
+      msg.react('🅱️')
+      .then(() => msg.react('🅰️'))
+      .then(() => msg.react('🇧'))
+      .then(() => msg.react('🅾️'))
+      .then(() => msg.react('🆘'))
+      .catch(() => console.error("fallo algo al reaccionar"));
+  }
   else if(Math.floor(Math.random() * 10) == 5)
   {
       msg.react('🇩')
