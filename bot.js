@@ -294,8 +294,9 @@ function getCucei() {
     await browser.close();
     console.log(data);
     
-
+    return data;
   }
+  console.log(scrapeIngComp);
   // octokit.repos
   //   .listCommits({
   //     owner: "vandelvan",
