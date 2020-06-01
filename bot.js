@@ -32,7 +32,7 @@ client.on("message", async (msg) => {
   {
       msg.react('🅱️')
       .then(() => msg.react('🅰️'))
-      .then(() => msg.react('🅱️'))
+      .then(() => msg.react('\:regional_indicator_b:'))
       .then(() => msg.react('🅾️'))
       .catch(() => console.error("fallo algo al reaccionar"));
   }
