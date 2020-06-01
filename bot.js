@@ -20,7 +20,7 @@ client.on("ready", () => {
     .then(console.log)
     .catch(console.error);
   console.log(`Logged in as ${client.user.tag}!`);
-  getCommitsRepos();
+  // getCommitsRepos(); DEPRECATED until another project comes
 });
 // Event listener when a user sends a message in the chat.
 client.on("message", async (msg) => {
@@ -28,47 +28,50 @@ client.on("message", async (msg) => {
   {
     msg.react(randomEmoji());
   }
+  else if(Math.floor(Math.random() * 5) == 2)
+  {
+    try{
+      await msg.react('🅱️');
+      await msg.react('🅰️');
+      await msg.react('🅱️');
+      await msg.react('🅾️');
+    } catch(error){
+      console.error("fallo algo al reaccionar");
+    }
+  }
   if (
-    msg.content.includes("tavo") ||
-    msg.content.includes("tabo") ||
-    msg.content.includes("tavotas") ||
-    msg.content.includes("tabotas") ||
-    msg.content.includes("Tabotas") ||
-    msg.content.includes("Tavotas") ||
-    msg.content.includes("Tabo") ||
-    msg.content.includes("Tavo") ||
-    msg.content.includes("vato") ||
-    msg.content.includes("Vato") ||
-    msg.content.includes("bato") ||
-    msg.content.includes("Bato") ||
-    msg.content.includes("Tabot") ||
-    msg.content.includes("Tavot") ||
-    msg.content.includes("tabot") ||
-    msg.content.includes("tavot") ||
-    msg.content.includes("diosito") ||
-    msg.content.includes("Diosito")
+    msg.content.toLowerCase().toLowerCase().includes("tavo") ||
+    msg.content.toLowerCase().includes("tabo") ||
+    msg.content.toLowerCase().includes("tavotas") ||
+    msg.content.toLowerCase().includes("tabotas") ||
+    msg.content.toLowerCase().includes("vato") ||
+    msg.content.toLowerCase().includes("bato") ||
+    msg.content.toLowerCase().includes("tabot") ||
+    msg.content.toLowerCase().includes("tavot") ||
+    msg.content.toLowerCase().includes("diosito") ||
+    msg.content.toLowerCase().includes("dios")
   ) {
     msg.reply(randomTavo());
-  } else if (msg.content.includes("aiuda")) {
+  } else if (msg.content.toLowerCase().includes("aiuda")) {
     msg.reply("Quien soy?");
-  } else if (msg.content.includes("mox")) {
+  } else if (msg.content.toLowerCase().includes("mox")) {
     msg.reply(
       "Maldita sea. Quiero cogerme a max. Tengo mi cuarto lleno de posters de chochoneguer, todos los días me tocó pensando en sus musculos tallados por los dioses, de sólo pensar en su rostro creado por artesanos de tonala y su nariz perfecta ya dejo un charco abajo de mi. Mi mamá ya no me deja agendar con max ."
     );
-  } else if (msg.content.includes("que hora")) {
+  } else if (msg.content.toLowerCase().includes("que hora")) {
     msg.reply("las horas del panzon");
-  } else if (msg.content.includes("dab")) {
+  } else if (msg.content.toLowerCase().includes("dab")) {
     const attachment = new Discord.MessageAttachment(randomImg());
     msg.channel.send(attachment);
     // msg.reply("div",{file:randomImg()});
-  } else if (msg.content.includes("zona") || msg.content.includes("sona")) {
+  } else if (msg.content.toLowerCase().includes("zona") || msg.content.toLowerCase().includes("sona")) {
     msg.reply("Cual?");
     msg.reply(randomTavo());
   }
   if (
-    msg.content.includes("cancion") ||
-    msg.content.includes("grammy") ||
-    msg.content.includes("escuchar")
+    msg.content.toLowerCase().includes("cancion") ||
+    msg.content.toLowerCase().includes("grammy") ||
+    msg.content.toLowerCase().includes("escuchar")
   ) {
     if (msg.member.voice.channel) {
       const connection = await msg.member.voice.channel.join();
@@ -168,14 +171,10 @@ function randomcancion() {
 function randomImg() {
   var imgs = [
     "https://i.ytimg.com/vi/SrDatE8K6pc/maxresdefault.jpg",
-    "http://pm1.narvii.com/7298/4679c582eda8f970711a06d032a355fbc7fe0e72r1-512-512v2_uhq.jpg",
     "https://i.redd.it/0yg11k4ug6l31.jpg",
     "https://pics.me.me/otis-44960217.png",
     "https://pbs.twimg.com/media/Dq_AnwYU0AA_aLu.jpg",
-    "https://media.makeameme.org/created/c-kronk.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYhwGi11CdFwBJ8PAMasok94eiwSB16yFckxsIlNtEOSlmKsCl",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXSR_la0OiSyqlf9WTv4cB_KExZRYkQrIud9uShJGM2smzehtM",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRifjMqzR8Rl2VGUESXYT2z_Hm4E_FB9iKqihDre_xgfr_51sXI",
+    "https://media.makeameme.org/created/c-kronk.jpg"
   ];
   var no = Math.floor(Math.random() * imgs.length);
   var img = imgs[no];
