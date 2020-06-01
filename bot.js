@@ -18,7 +18,8 @@ client.on("ready", () => {
   client.user
     .setActivity("chillin' at twitch", {
       type: "STREAMING",
-      url: "https://www.twitch.tv/vandelvan"
+      url: "https://www.twitch.tv/vandelvan",
+      emoji: "🍜"
     })
     .then(console.log)
     .catch(console.error);
@@ -279,7 +280,9 @@ function getCucei() {
     uri: "https://www.facebook.com/ing.cucei"
   }, function(error, response, body){
     var $ = cheerio.load(body);
-    console.log(body);
+    $("div").each(function(){
+      console.warn($(this));
+    });
     
   });  
   // octokit.repos
