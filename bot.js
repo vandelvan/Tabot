@@ -274,7 +274,7 @@ function getCommitsRepos() {
 //metodo para nuevas publicaciones de INCO/DIVEC
 function getCucei() {
   console.log("sientra");
-  const scrapeFB = async () => {
+  (async () => {
     const channel = client.channels.cache.get("678456371171033088");
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
@@ -324,7 +324,7 @@ function getCucei() {
       channel.send(text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
     }
     return text;
-  };
+  });
   console.log("sisale");
   setTimeout(function () {
     getCucei();
