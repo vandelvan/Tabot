@@ -277,7 +277,7 @@ async function getCucei() {
     const channel = client.channels.cache.get("678456371171033088");
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const page = await browser.newPage();
     //entramos a ing.cucei pagina oficial de ingenieria en computacion y esperamos que cargue
     await page.goto("https://www.facebook.com/ing.cucei", {
