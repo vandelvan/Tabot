@@ -20,10 +20,10 @@ client.on("ready", () => {
       url: "https://www.twitch.tv/vandelvan",
     })
     .then(console.log)
+    .then(getCucei())
     .catch(console.error);
   console.log(`Logged in as ${client.user.tag}!`);
   // getCommitsRepos(); DEPRECATED until another project comes
-  getCucei();
 });
 // Event listener when a user sends a message in the chat.
 client.on("message", async (msg) => {
