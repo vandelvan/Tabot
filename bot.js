@@ -274,49 +274,54 @@ function getCommitsRepos() {
 
 //metodo para nuevas publicaciones de INCO/DIVEC
 function getCucei() {
-  const scrapeIngComp = async() => {
-    const browser = await puppeteer.launch( { headless: true } );
-    const page = await browser.newPage();
-
-    await page.goto("https://www.facebook.com/ing.cucei");
-
-    await page.waitForSelector('img', {
-      visible: true
+  const channel = client.channels.cache.get("678456371171033088");
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  //entramos a ing.cucei pagina oficial de ingenieria en computacion y esperamos que cargue
+  await page.goto('https://www.facebook.com/ing.cucei', { waitUntil: 'networkidle2' });
+  //scrolleamos 2 veces para cargar contenido dinamico
+  await page.evaluate( () => {
+              window.scrollBy(0, window.innerHeight);
+          });
+  await page.evaluate( () => {
+              window.scrollBy(0, window.innerHeight);
+          });
+  //Esperamos el primer post
+  //Se ve marrano pero es necesario usar el fullXPath
+  await page.waitForXPath('/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]');
+  const text = await page.evaluate(() => {
+      const featureArticle = document
+          .evaluate(
+              '/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]',
+              document,
+              null,
+              XPathResult.FIRST_ORDERED_NODE_TYPE,
+              null
+          )
+          .singleNodeValue;
+          //obtenemos el texto del post mas nuevo
+      return featureArticle.textContent;
+  });
+  console.log(text);
+  await browser.close();
+  //abrimos el json con los datos mas recientes
+  var fs = require("fs");
+ // tomamos su contenido
+ const Json = "ingcucei.json";
+  var jsonData = fs.readFileSync(Json);
+ // Lo parseamos para manipularlo como objeto
+  jsonData = JSON.parse(jsonData);
+  if(jsonData.texto != text)
+  {
+    jsonData.text = text;
+    fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err){
+    if (err) return console.log(err);
     });
-
-    const data = await page.evaluate(() => {
-      const posts = document.querySelectorAll('div');
-
-      const urls = Array.from(posts).map(v => v.p);
-      return urls;
-    });
-
-    await browser.close();
-    console.log(data);
-    
-    return data;
+    channel.send(text+"\n Fuentezaxa: https://www.facebook.com/ing.cucei");
   }
-  console.log(scrapeIngComp);
-  // octokit.repos
-  //   .listCommits({
-  //     owner: "vandelvan",
-  //     repo: "Datapath",
-  //   })
-  //   .then((value) => {
-  //     if (lastCommitData == "" || lastCommitData != value.data[0].sha) {
-  //       lastCommitData = value.data[0].sha;
-  //       autorData = value.data[0].author.login;
-  //       cambioData = value.data[0].commit.message;
-  //       channel.send(
-  //         "`" +
-  //           autorData +
-  //           "` Realizo: `" +
-  //           cambioData +
-  //           "` en el repo de Datapath xd"
-  //       );
-  //     }
-  //   });
-  // setTimeout(function () {
-  //   getCommitsRepos();
-  // }, 600000); //cada 10 mins
+  setTimeout(function () {
+    getCucei();
+  }, (3600000*12)); //cada 12 hrs
 }
