@@ -273,6 +273,7 @@ function getCommitsRepos() {
 
 //metodo para nuevas publicaciones de INCO/DIVEC
 function getCucei() {
+  console.log("sientra");
   const scrapeFB = async () => {
     const channel = client.channels.cache.get("678456371171033088");
     // Do nothing if the channel wasn't found on this server
@@ -324,6 +325,7 @@ function getCucei() {
     }
     return text;
   };
+  console.log("sisale");
   setTimeout(function () {
     getCucei();
   }, 3600000 * 12); //cada 12 hrs
