@@ -273,7 +273,7 @@ function getCommitsRepos() {
 
 //metodo para nuevas publicaciones de INCO/DIVEC
 async function getCucei() {
-  console.log("sientra");
+  // console.log("sientra");
     const channel = client.channels.cache.get("678456371171033088");
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
@@ -306,7 +306,7 @@ async function getCucei() {
       //obtenemos el texto del post mas nuevo
       return featureArticle.textContent;
     });
-    console.log(text);
+    // console.log(text);
     await browser.close();
     //abrimos el json con los datos mas recientes
     var fs = require("fs");
@@ -317,12 +317,12 @@ async function getCucei() {
     jsonData = JSON.parse(jsonData);
     if (jsonData.texto != text) {
       jsonData.text = text;
-      fs.writeFile(Js, JSON.stringify(jsonData), function writeJSON(err) {
+      fs.writeFile(Json, JSON.stringify(jsonData), function writeJSON(err) {
         if (err) return console.log(err);
       });
       channel.send(text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
     }
-  console.log("sisale");
+  // console.log("sisale");
   setTimeout(function () {
     getCucei();
   }, 3600000 * 12); //cada 12 hrs
