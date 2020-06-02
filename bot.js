@@ -316,7 +316,7 @@ function getCucei() {
   if(jsonData.texto != text)
   {
     jsonData.text = text;
-    fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err){
+    fs.writeFile(Js, JSON.stringify(jsonData), function writeJSON(err){
     if (err) return console.log(err);
     });
     channel.send(text+"\n Fuentezaxa: https://www.facebook.com/ing.cucei");
