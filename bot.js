@@ -309,16 +309,16 @@ async function getCucei() {
     // console.log(text);
     await browser.close();
     //abrimos el json con los datos mas recientes
-    var fs = require("fs");
+    const fs = require('fs');
+    const fileName = "./ingcucei.json";
     // tomamos su contenido
-    const Json = "ingcucei.json";
-    var jsonData = fs.readFileSync(Json);
-    // Lo parseamos para manipularlo como objeto
-    jsonData = JSON.parse(jsonData);
-    if (jsonData.texto != text) {
-      jsonData.text = text;
-      fs.writeFile(Json, JSON.stringify(jsonData), function writeJSON(err) {
+    const file = require(fileName);
+    if (file.texto != text) {
+      file.texto = text;
+      fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
         if (err) return console.log(err);
+        console.log(JSON.stringify(file));
+        console.log('writing to ' + fileName);
       });
       channel.send(text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
     }
