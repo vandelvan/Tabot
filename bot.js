@@ -4,6 +4,7 @@ const client = new Discord.Client();
 const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
 const puppeteer = require("puppeteer");
+const fs = require('fs').promises;
 
 var lastCommitDeco = "";
 var autorDeco = "";
@@ -309,13 +310,12 @@ async function getCucei() {
     // console.log(text);
     await browser.close();
     //abrimos el json con los datos mas recientes
-    const fs = require('fs');
     const fileName = "./ingcucei.json";
     // tomamos su contenido
-    const file = require(fileName);
+    const file = await fs.readFile(fileName, "utf8");
     if (file.texto != text) {
       file.texto = text;
-      fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
+      await fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
         if (err) return console.log(err);
         console.log(JSON.stringify(file));
         console.log('writing to ' + fileName);
