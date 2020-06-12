@@ -16,9 +16,9 @@ var cambioData = "";
 // Event listener when a user connected to the server.
 client.on("ready", () => {
   client.user
-    .setActivity("chillin' at twitch", {
+    .setActivity("just vibin'", {
       type: "STREAMING",
-      url: "https://www.twitch.tv/vandelvan",
+      url: "https://open.spotify.com/artist/1vgJilzDeVio0hWQnGFPXJ?autoplay=true&v=A",
     })
     .then(console.log)
     .then(getCucei())
@@ -312,10 +312,10 @@ async function getCucei() {
     //abrimos el json con los datos mas recientes
     const fileName = "./ingcucei.json";
     // tomamos su contenido
-    const file = await fs.readFile(fileName, "utf8");
+    const file = await fs.readFileAsync(fileName, "utf8");
     if (file.texto != text) {
       file.texto = text;
-      await fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
+      await fs.writeFileAsync(fileName, JSON.stringify(file), function writeJSON(err) {
         if (err) return console.log(err);
         console.log(JSON.stringify(file));
         console.log('writing to ' + fileName);
