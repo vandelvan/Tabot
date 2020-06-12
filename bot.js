@@ -312,7 +312,7 @@ async function getCucei() {
     //abrimos el json con los datos mas recientes
     const fileName = "./ingcucei.json";
     // tomamos su contenido
-    const file = await JSON.parse(fs.readFile(fileName, "utf8"));
+    let file = await JSON.parse(fs.readFile(fileName, "utf8"));
     if (file.texto != text) {
       file.texto = text;
       await fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
