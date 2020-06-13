@@ -328,10 +328,10 @@ async function getCucei() {
     });
     if (file.texto != text) {
       file.texto = text;
-      fs.writeFile(fileName, JSON.stringify(file), (err) => {
+      await fs.writeFile(fileName, JSON.stringify(file), (err) => {
          console.log(err || 'complete');
       });
-      channel.send("<@&707227755628199937>" + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
+      channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
       const attachment = new Discord.MessageAttachment(img);
       channel.send(attachment);
     }
