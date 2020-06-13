@@ -322,18 +322,19 @@ async function getCucei() {
     await browser.close();
     //abrimos el json con los datos mas recientes
     const fileName = "./ingcucei.json";
-    fs.readFile(fileName, 'utf8', (e, data) => {
+    let file = await fs.readFile(fileName, 'utf8', (e, data) => {
       const file = JSON.parse(data);
-      if (file.texto != text) {
-        file.texto = text;
-        fs.writeFile(fileName, JSON.stringify(file), (err) => {
-           console.log(err || 'complete');
-        });
-        channel.send(text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
-        const attachment = new Discord.MessageAttachment(img);
-        msg.channel.send(attachment);
-      }
+      return file; 
     });
+    if (file.texto != text) {
+      file.texto = text;
+      fs.writeFile(fileName, JSON.stringify(file), (err) => {
+         console.log(err || 'complete');
+      });
+      channel.send("<@&707227755628199937>" + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
+      const attachment = new Discord.MessageAttachment(img);
+      msg.channel.send(attachment);
+    }
   // console.log("sisale");
   setTimeout(function () {
     getCucei();
