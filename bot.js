@@ -16,9 +16,8 @@ var cambioData = "";
 // Event listener when a user connected to the server.
 client.on("ready", () => {
   client.user
-    .setActivity("just vibin'", {
-      type: "STREAMING",
-      url: "https://open.spotify.com/artist/1vgJilzDeVio0hWQnGFPXJ?autoplay=true&v=A",
+    .setActivity("Team Fortress 2", {
+      type: "PLAYING",
     })
     .then(console.log)
     .then(getCucei())
@@ -323,7 +322,7 @@ async function getCucei() {
     await browser.close();
     //abrimos el json con los datos mas recientes
     const fileName = "./ingcucei.json";
-    await fs.readFile(fileName, 'utf8', (e, data) => {
+    fs.readFile(fileName, 'utf8', (e, data) => {
       const file = JSON.parse(data);
       if (file.texto != text) {
         file.texto = text;
