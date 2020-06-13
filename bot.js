@@ -307,21 +307,34 @@ async function getCucei() {
       //obtenemos el texto del post mas nuevo
       return featureArticle.textContent;
     });
+    //obtenemos la imagen
+    const img = await page.evaluate(() => {
+      const featureArticle = document.evaluate(
+        "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/div[3]/div[3]/div[2]/div/div/div[1]/div/div/div/a/div/img",
+        document,
+        null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE,
+        null
+      ).singleNodeValue;
+      //obtenemos el texto del post mas nuevo
+      return featureArticle.getAttribute('src');
+    });
     // console.log(text);
     await browser.close();
     //abrimos el json con los datos mas recientes
     const fileName = "./ingcucei.json";
-    // tomamos su contenido
-    let file = await JSON.parse(fs.readFile(fileName, "utf8"));
-    if (file.texto != text) {
-      file.texto = text;
-      await fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
-        if (err) return console.log(err);
-        console.log(JSON.stringify(file));
-        console.log('writing to ' + fileName);
-      });
-      channel.send(text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
-    }
+    await fs.readFile(fileName, 'utf8', (e, data) => {
+      const file = JSON.parse(data);
+      if (file.texto != text) {
+        file.texto = text;
+        fs.writeFile(fileName, JSON.stringify(file), (err) => {
+           console.log(err || 'complete');
+        });
+        channel.send(text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
+        const attachment = new Discord.MessageAttachment(img);
+        msg.channel.send(attachment);
+      }
+    });
   // console.log("sisale");
   setTimeout(function () {
     getCucei();
