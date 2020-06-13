@@ -333,7 +333,7 @@ async function getCucei() {
       });
       channel.send("<@&707227755628199937>" + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
       const attachment = new Discord.MessageAttachment(img);
-      msg.channel.send(attachment);
+      channel.send(attachment);
     }
   // console.log("sisale");
   setTimeout(function () {
