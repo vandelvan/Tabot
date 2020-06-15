@@ -325,10 +325,11 @@ async function getCucei() {
       if(err) throw err;
       const collection = clientDB.db("heroku_pknlh6w2").collection("tabot");
       console.log("conectado a la DB");
-      collection.findOne({}, function(err, result) {
-        if (err) throw err;
-        console.log(result.text);
-        db.close();
+      collection.find({}).toArray(function(err, docs) {
+        assert.equal(err, null);
+        console.log("Found the following records");
+        console.log(docs)
+        callback(docs);
       });
       // if (file.texto != text) {
       //   file.texto = text;
