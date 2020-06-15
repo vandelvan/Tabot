@@ -325,10 +325,10 @@ async function getCucei() {
       if(err) throw err;
       const collection = clientDB.db("heroku_pknlh6w2").collection("tabot");
       console.log("conectado a la DB");
-      collection.find({}).toArray(function(err, docs) {
+      const col = collection.find({}).toArray(function(err, docs) {
         if(err) throw err;
         if (docs[0].text != text) {
-          collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
+          const upd = collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
             if(err) throw err;
             console.log("Updated");
             channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
