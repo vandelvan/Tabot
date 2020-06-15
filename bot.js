@@ -326,7 +326,7 @@ async function getCucei() {
       const collection = clientDB.db("heroku_pknlh6w2").collection("tabot");
       console.log("conectado a la DB");
       collection.find({}).toArray(function(err, docs) {
-        assert.equal(err, null);
+        if(err) throw err;
         console.log("Found the following records");
         console.log(docs)
         callback(docs);
