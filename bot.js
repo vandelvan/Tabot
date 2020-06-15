@@ -7,7 +7,7 @@ const puppeteer = require("puppeteer");
 const fs = require('fs').promises;
 const MongoClient = require('mongodb').MongoClient;
 const uri = process.env.MONGODB_URI;
-const clientDB = new MongoClient(uri, { useNewUrlParser: true });
+const clientDB = new MongoClient(uri, {poolSize: 10, useNewUrlParser: true });
 
 var lastCommitDeco = "";
 var autorDeco = "";
