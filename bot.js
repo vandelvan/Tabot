@@ -5,6 +5,9 @@ const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
 const puppeteer = require("puppeteer");
 const fs = require('fs').promises;
+const MongoClient = require('mongodb').MongoClient;
+const uri = process.env.MONGODB_URI;
+const clientDB = new MongoClient(uri, { useNewUrlParser: true });
 
 var lastCommitDeco = "";
 var autorDeco = "";
@@ -266,9 +269,6 @@ function getCommitsRepos() {
         );
       }
     });
-  setTimeout(function () {
-    getCommitsRepos();
-  }, 600000); //cada 10 mins
 }
 
 //metodo para nuevas publicaciones de INCO/DIVEC
@@ -321,22 +321,25 @@ async function getCucei() {
     // console.log(text);
     await browser.close();
     //abrimos el json con los datos mas recientes
-    const fileName = "./ingcucei.json";
-    let file = await fs.readFile(fileName, 'utf8', (e, data) => {
-      const file = JSON.parse(data);
-      return file; 
-    });
-    if (file.texto != text) {
-      file.texto = text;
-      await fs.writeFile(fileName, JSON.stringify(file), (err) => {
-         console.log(err || 'complete');
+    await clientDB.connect(err => {
+      if(err) throw err;
+      const collection = clientDB.db("heroku_pknlh6w2").collection("tabot");
+      console.log("conectado a la DB");
+      await collection.findOne({}, function(err, result) {
+        if (err) throw err;
+        console.log(result.text);
+        db.close();
       });
-      channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
-      const attachment = new Discord.MessageAttachment(img);
-      channel.send(attachment);
-    }
-  // console.log("sisale");
-  setTimeout(function () {
-    getCucei();
-  }, 3600000 * 12); //cada 12 hrs
+      // if (file.texto != text) {
+      //   file.texto = text;
+      //   await fs.writeFile(fileName, JSON.stringify(file), (err) => {
+      //      console.log(err || 'complete');
+      //   });
+      //   channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
+      //   const attachment = new Discord.MessageAttachment(img);
+      //   channel.send(attachment);
+      // }
+      
+      clientDB.close();
+    });
 }

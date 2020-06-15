@@ -8,13 +8,14 @@
     "start": "node bot.js"
   },
   "dependencies": {
+    "@discordjs/opus": "0.1.0",
+    "@octokit/rest": "17.9.0",
     "discord.js": "12.0.2",
     "ffmpeg": "0.0.4",
-    "ffmpeg-binaries":"3.2.2-3",
-    "@discordjs/opus":"0.1.0",
-    "ytdl-core": "2.0.0",
+    "ffmpeg-binaries": "3.2.2-3",
+    "mongodb": "^3.5.9",
+    "puppeteer": "3.2.0",
     "request": "2.88.02",
-    "@octokit/rest": "17.9.0",
-    "puppeteer": "3.2.0"
+    "ytdl-core": "2.0.0"
   }
 }
