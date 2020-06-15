@@ -328,7 +328,6 @@ async function getCucei() {
       collection.find({}).toArray(function(err, docs) {
         if(err) throw err;
         if (docs[0].text != text) {
-          file.texto = text;
           collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
             if(err) throw err;
             console.log("Updated");
