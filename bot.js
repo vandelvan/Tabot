@@ -328,7 +328,7 @@ async function getCucei() {
       collection.find({}).toArray(function(err, docs) {
         if(err) throw err;
         console.log("Found the following records");
-        console.log(docs.text);
+        console.log(docs[0].text);
       });
       // if (file.texto != text) {
       //   file.texto = text;
