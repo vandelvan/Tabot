@@ -327,19 +327,17 @@ async function getCucei() {
       console.log("conectado a la DB");
       collection.find({}).toArray(function(err, docs) {
         if(err) throw err;
-        console.log("Found the following records");
-        console.log(docs[0].text);
-      });
-      // if (file.texto != text) {
-      //   file.texto = text;
-      //   await fs.writeFile(fileName, JSON.stringify(file), (err) => {
-      //      console.log(err || 'complete');
-      //   });
-      //   channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
-      //   const attachment = new Discord.MessageAttachment(img);
-      //   channel.send(attachment);
-      // }
-      
+        if (docs[0].text != text) {
+          file.texto = text;
+          collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
+            if(err) throw err;
+            console.log("Updated");
+            channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
+            const attachment = new Discord.MessageAttachment(img);
+            channel.send(attachment);
+          });
+        }
+      });      
       clientDB.close();
     });
 }
