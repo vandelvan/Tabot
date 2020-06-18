@@ -294,7 +294,9 @@ async function getCucei() {
     //Se ve marrano pero es necesario usar el fullXPath
     await page.waitForXPath(
       "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]"
-    );
+    ).catch((e) => {
+      console.error("timeout probs");      
+    });
     const text = await page.evaluate(() => {
       const featureArticle = document.evaluate(
         "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]",
@@ -305,6 +307,8 @@ async function getCucei() {
       ).singleNodeValue;
       //obtenemos el texto del post mas nuevo
       return featureArticle.textContent;
+    }).catch((e) => {
+      console.warn("No hay texto...?");
     });
     //obtenemos la imagen
     const img = await page.evaluate(() => {
@@ -318,7 +322,7 @@ async function getCucei() {
       //obtenemos el texto del post mas nuevo
       return featureArticle.getAttribute('src');
     }).catch((e) => {
-      console.log("No hay imagen");
+      console.log("No hay imagen/No es imagen");
     });
     // console.log(text);
     await browser.close();
