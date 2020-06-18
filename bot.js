@@ -317,6 +317,8 @@ async function getCucei() {
       ).singleNodeValue;
       //obtenemos el texto del post mas nuevo
       return featureArticle.getAttribute('src');
+    }).catch((e) => {
+      console.log("No hay imagen");
     });
     // console.log(text);
     await browser.close();
