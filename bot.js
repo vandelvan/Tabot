@@ -313,12 +313,12 @@ async function getCucei() {
       console.warn("No hay texto...?");
     });
     texto = text.split("·");
-    if(texto.length >= 2)
+    if(texto.length >= 3)
     {
-      txt = texto[1];
+      txt = texto[2];
     }
     else{
-      txt = texto[0];
+      txt = texto[1];
     }
     //obtenemos la imagen
     const img = await page.evaluate(() => {
