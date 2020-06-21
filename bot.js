@@ -298,6 +298,7 @@ async function getCucei() {
       console.error("timeout probs");      
     });
     let texto = [];
+    let txt = "";
     const text = await page.evaluate(() => {
       const featureArticle = document.evaluate(
         "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]",
@@ -314,10 +315,10 @@ async function getCucei() {
     texto = text.split("·");
     if(texto.length >= 2)
     {
-      text = texto[1];
+      txt = texto[1];
     }
     else{
-      text = texto[0];
+      txt = texto[0];
     }
     //obtenemos la imagen
     const img = await page.evaluate(() => {
@@ -342,11 +343,11 @@ async function getCucei() {
       console.log("conectado a la DB");
       collection.find({}).toArray(function(err, docs) {
         if(err) throw err;
-        if (docs[0].text != text) {
-          collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
+        if (docs[0].text != txt) {
+          collection.updateOne({}, { $set: { "text" : txt } }, function(err, result) {
             if(err) throw err;
             console.log("Updated");
-            channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
+            channel.send("<@&707227755628199937> " + txt + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
             const attachment = new Discord.MessageAttachment(img);
             channel.send(attachment);
           });
