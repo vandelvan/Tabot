@@ -297,6 +297,7 @@ async function getCucei() {
     ).catch((e) => {
       console.error("timeout probs");      
     });
+    let texto = [];
     const text = await page.evaluate(() => {
       const featureArticle = document.evaluate(
         "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]",
@@ -310,6 +311,14 @@ async function getCucei() {
     }).catch((e) => {
       console.warn("No hay texto...?");
     });
+    texto = text.split("·");
+    if(texto.length >= 2)
+    {
+      text = texto[1];
+    }
+    else{
+      text = texto[0];
+    }
     //obtenemos la imagen
     const img = await page.evaluate(() => {
       const featureArticle = document.evaluate(
