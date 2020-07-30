@@ -4,7 +4,6 @@ const client = new Discord.Client();
 const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
 const puppeteer = require("puppeteer");
-const fs = require('fs').promises;
 const MongoClient = require('mongodb').MongoClient;
 const uri = process.env.MONGODB_URI;
 const clientDB = new MongoClient(uri, {poolSize: 10, useNewUrlParser: true });
@@ -336,7 +335,7 @@ async function getCucei() {
     });
     // console.log(text);
     await browser.close();
-    //abrimos el json con los datos mas recientes
+    //tomamos los datos mas recientes
     await clientDB.connect(err => {
       if(err) throw err;
       const collection = clientDB.db("heroku_pknlh6w2").collection("tabot");
