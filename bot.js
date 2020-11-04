@@ -272,6 +272,8 @@ function getCommitsRepos() {
 
 //metodo para nuevas publicaciones de INCO/DIVEC
 async function getCucei() {
+    const xpath = "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[2]/div/div/div[2]/div[1]/div[3]/div[3]";
+    const imgxpath = "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[2]/div/div/div[2]/div[1]/div[3]/div[3]/div/div/div/div/a/div/img"
   // console.log("sientra");
     const channel = client.channels.cache.get("678456371171033088");
     // Do nothing if the channel wasn't found on this server
@@ -292,7 +294,7 @@ async function getCucei() {
     //Esperamos el primer post
     //Se ve marrano pero es necesario usar el fullXPath
     await page.waitForXPath(
-      "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]"
+      xpath
     ).catch((e) => {
       console.error("timeout probs");      
     });
@@ -300,7 +302,7 @@ async function getCucei() {
     let txt = "";
     const text = await page.evaluate(() => {
       const featureArticle = document.evaluate(
-        "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]",
+        xpath,
         document,
         null,
         XPathResult.FIRST_ORDERED_NODE_TYPE,
@@ -322,7 +324,7 @@ async function getCucei() {
     //obtenemos la imagen
     const img = await page.evaluate(() => {
       const featureArticle = document.evaluate(
-        "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/div[3]/div[3]/div[2]/div/div/div[1]/div/div/div/a/div/img",
+        imgxpath,
         document,
         null,
         XPathResult.FIRST_ORDERED_NODE_TYPE,
