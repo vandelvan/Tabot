@@ -291,6 +291,12 @@ async function getCucei() {
     await page.evaluate(() => {
       window.scrollBy(0, window.innerHeight);
     });
+    await page.evaluate(() => {
+      window.scrollBy(0, window.innerHeight);
+    });
+    await page.evaluate(() => {
+      window.scrollBy(0, window.innerHeight);
+    });
     //Esperamos el primer post
     await page.waitForXPath(
       xpath
