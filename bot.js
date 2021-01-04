@@ -272,8 +272,8 @@ function getCommitsRepos() {
 
 //metodo para nuevas publicaciones de INCO/DIVEC
 async function getCucei() {
-    const xpath = "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[4]/div[2]/div/div/div/div[2]/div[1]/div[3]/div[2]";
-    const imgxpath = "/html/body/div[1]/div[3]/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/div[1]/div/div[2]/div/div[4]/div[2]/div/div/div/div[2]/div[1]/div[3]/div[3]/div/div/div/a[1]/div/img"
+  const textSel = "#u_0_w > div._5pcr.userContentWrapper > div._1dwg._1w_m._q7o > div:nth-child(4) > div._3x-2 > div:nth-child(2) > div > div > div.mtm._5pcm";
+  const imgSel = "#u_0_y > div._5pcr.userContentWrapper > div._1dwg._1w_m._q7o > div:nth-child(4) > div._3x-2 > div:nth-child(2) > div > div > div:nth-child(1) > div > div > div > a > div > img"
   // console.log("sientra");
     const channel = client.channels.cache.get("678456371171033088");
     // Do nothing if the channel wasn't found on this server
@@ -291,53 +291,21 @@ async function getCucei() {
     await page.evaluate(() => {
       window.scrollBy(0, window.innerHeight);
     });
-    await page.evaluate(() => {
-      window.scrollBy(0, window.innerHeight);
-    });
-    await page.evaluate(() => {
-      window.scrollBy(0, window.innerHeight);
-    });
     //Esperamos el primer post
-    await page.waitForXPath(
-      xpath
+    await page.waitForSelector(
+      textSel
     ).catch((e) => {
       console.error("timeout probs");      
     });
-    let texto = [];
-    let txt = "";
-    const text = await page.evaluate(() => {
-      const featureArticle = document.evaluate(
-        xpath,
-        document,
-        null,
-        XPathResult.FIRST_ORDERED_NODE_TYPE,
-        null
-      ).singleNodeValue;
-      //obtenemos el texto del post mas nuevo
-      return featureArticle.textContent;
-    }).catch((e) => {
+    const element = page.$(textSel);
+        const text = await page.evaluate(el => el.textContent, element).catch((e) => {
       console.warn("No hay texto...?");
     });
-    texto = text.split("·");
-    if(texto.length >= 3)
-    {
-      txt = texto[2];
-    }
-    else{
-      txt = texto[1];
-    }
     //obtenemos la imagen
-    const img = await page.evaluate(() => {
-      const featureArticle = document.evaluate(
-        imgxpath,
-        document,
-        null,
-        XPathResult.FIRST_ORDERED_NODE_TYPE,
-        null
-      ).singleNodeValue;
-      //obtenemos el texto del post mas nuevo
-      return featureArticle.getAttribute('src');
-    }).catch((e) => {
+    await page.waitForSelector(imgSel).catch((e) => {
+      console.error("timeout probs");      
+    });
+    const img = await page.$eval(imgSel, img => img.getAttribute('data-src')).catch((e) => {
       console.log("No hay imagen/No es imagen");
     });
     // console.log(text);
@@ -349,11 +317,11 @@ async function getCucei() {
       console.log("conectado a la DB");
       collection.find({}).toArray(function(err, docs) {
         if(err) throw err;
-        if (docs[0].text != txt) {
-          collection.updateOne({}, { $set: { "text" : txt } }, function(err, result) {
+        if (docs[0].text != text) {
+          collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
             if(err) throw err;
             console.log("Updated");
-            channel.send("<@&707227755628199937> " + txt + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
+            channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
             const attachment = new Discord.MessageAttachment(img);
             channel.send(attachment);
           });
