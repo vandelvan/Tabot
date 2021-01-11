@@ -1,11 +1,9 @@
 // Import libraries
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const { Octokit } = require("@octokit/rest");
-const octokit = new Octokit();
 const MongoClient = require('mongodb').MongoClient;
 const uri = process.env.MONGODB_URI;
-const clientDB = new MongoClient(uri, {poolSize: 10, useNewUrlParser: true });
+const clientDB = new MongoClient(uri, {poolSize: 10, useNewUrlParser: true, useUnifiedTopology: true });
 const Parser = require('rss-parser');
 const parser = new Parser({
   customFields: {
@@ -32,7 +30,6 @@ client.on("ready", () => {
     .then(getCucei())
     .catch(console.error);
   console.log(`Logged in as ${client.user.tag}!`);
-  // getCommitsRepos(); DEPRECATED until another project comes
 });
 // Event listener when a user sends a message in the chat.
 client.on("message", async (msg) => {
@@ -230,51 +227,6 @@ function randomEmoji() {
   var no = Math.floor(Math.random() * emoji.length);
   var em = emoji[no];
   return em;
-}
-
-function getCommitsRepos() {
-  const channel = client.channels.cache.get("678456371171033088");
-  // Do nothing if the channel wasn't found on this server
-  if (!channel) return;
-  octokit.repos
-    .listCommits({
-      owner: "vandelvan",
-      repo: "Decodificador",
-    })
-    .then((value) => {
-      if (lastCommitDeco == "" || lastCommitDeco != value.data[0].sha) {
-        lastCommitDeco = value.data[0].sha;
-        autorDeco = value.data[0].author.login;
-        cambioDeco = value.data[0].commit.message;
-        channel.send(
-          "`" +
-            autorDeco +
-            "` Realizo: `" +
-            cambioDeco +
-            "` en el repo de Decodificador xd"
-        );
-      }
-    });
-
-  octokit.repos
-    .listCommits({
-      owner: "vandelvan",
-      repo: "Datapath",
-    })
-    .then((value) => {
-      if (lastCommitData == "" || lastCommitData != value.data[0].sha) {
-        lastCommitData = value.data[0].sha;
-        autorData = value.data[0].author.login;
-        cambioData = value.data[0].commit.message;
-        channel.send(
-          "`" +
-            autorData +
-            "` Realizo: `" +
-            cambioData +
-            "` en el repo de Datapath xd"
-        );
-      }
-    });
 }
 
 //metodo para nuevas publicaciones de INCO/DIVEC
