@@ -231,6 +231,9 @@ function randomEmoji() {
 
 //metodo para nuevas publicaciones de INCO/DIVEC
 async function getCucei() {
+  const channel = client.channels.cache.get("678456371171033088");
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
   let feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa35ffb9559cb480a2b3f100d02.xml');
   let text = feed.items[0].title;
   //tomamos los datos mas recientes
