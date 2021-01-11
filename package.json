@@ -1,6 +1,6 @@
 {
   "name": "tabot",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "nepestastic bot!",
   "main": "bot.js",
   "author": "vandelvan",
@@ -14,8 +14,8 @@
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "3.2.2-3",
     "mongodb": "^3.5.9",
-    "puppeteer": "3.2.0",
     "request": "2.88.02",
+    "rss-parser": "^3.10.0",
     "ytdl-core": "2.0.0"
   }
 }

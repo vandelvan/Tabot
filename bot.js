@@ -3,10 +3,17 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
-const puppeteer = require("puppeteer");
 const MongoClient = require('mongodb').MongoClient;
 const uri = process.env.MONGODB_URI;
 const clientDB = new MongoClient(uri, {poolSize: 10, useNewUrlParser: true });
+const Parser = require('rss-parser');
+const parser = new Parser({
+  customFields: {
+    item: [
+      ['media:content','img'],
+    ],
+  }
+});
 
 var lastCommitDeco = "";
 var autorDeco = "";
@@ -272,61 +279,26 @@ function getCommitsRepos() {
 
 //metodo para nuevas publicaciones de INCO/DIVEC
 async function getCucei() {
-  const textSel = "#u_0_w > div._5pcr.userContentWrapper > div._1dwg._1w_m._q7o > div:nth-child(4) > div._3x-2 > div:nth-child(2) > div > div > div.mtm._5pcm";
-  const imgSel = "#u_0_y > div._5pcr.userContentWrapper > div._1dwg._1w_m._q7o > div:nth-child(4) > div._3x-2 > div:nth-child(2) > div > div > div:nth-child(1) > div > div > div > a > div > img"
-  // console.log("sientra");
-    const channel = client.channels.cache.get("678456371171033088");
-    // Do nothing if the channel wasn't found on this server
-    if (!channel) return;
-    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
-    const page = await browser.newPage();
-    //entramos a ing.cucei pagina oficial de ingenieria en computacion y esperamos que cargue
-    await page.goto("https://www.facebook.com/ing.cucei", {
-      waitUntil: "networkidle2",
-    });
-    //scrolleamos 2 veces para cargar contenido dinamico
-    await page.evaluate(() => {
-      window.scrollBy(0, window.innerHeight);
-    });
-    await page.evaluate(() => {
-      window.scrollBy(0, window.innerHeight);
-    });
-    //Esperamos el primer post
-    await page.waitForSelector(
-      textSel
-    ).catch((e) => {
-      console.error("timeout probs");      
-    });
-    const element = page.$(textSel);
-        const text = await page.evaluate(el => el.textContent, element).catch((e) => {
-      console.warn("No hay texto...?");
-    });
-    //obtenemos la imagen
-    await page.waitForSelector(imgSel).catch((e) => {
-      console.error("timeout probs");      
-    });
-    const img = await page.$eval(imgSel, img => img.getAttribute('data-src')).catch((e) => {
-      console.log("No hay imagen/No es imagen");
-    });
-    // console.log(text);
-    await browser.close();
-    //tomamos los datos mas recientes
-    await clientDB.connect(err => {
+  let feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa35ffb9559cb480a2b3f100d02.xml');
+  let text = feed.items[0].title;
+  //tomamos los datos mas recientes
+  await clientDB.connect(err => {
+    if(err) throw err;
+    const collection = clientDB.db("heroku_pknlh6w2").collection("tabot");
+    console.log("conectado a la DB");
+    collection.find({}).toArray(function(err, docs) {
       if(err) throw err;
-      const collection = clientDB.db("heroku_pknlh6w2").collection("tabot");
-      console.log("conectado a la DB");
-      collection.find({}).toArray(function(err, docs) {
-        if(err) throw err;
-        if (docs[0].text != text) {
-          collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
-            if(err) throw err;
-            console.log("Updated");
-            channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: https://www.facebook.com/ing.cucei");
-            const attachment = new Discord.MessageAttachment(img);
-            channel.send(attachment);
-          });
-        }
-      });      
-    });
-    await clientDB.close();
+      if (docs[0].text != text) {
+        let img = feed.items[0].img.$.url;
+        collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
+          if(err) throw err;
+          console.log("Updated");
+          channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: " + feed.items[0].link);
+          const attachment = new Discord.MessageAttachment(img);
+          channel.send(attachment);
+        });
+      }
+    });      
+  });
+  await clientDB.close();
 }
