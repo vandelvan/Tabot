@@ -229,13 +229,21 @@ function randomEmoji() {
   return em;
 }
 
-//metodo para nuevas publicaciones de INCO/DIVEC
+//metodo para nuevas publicaciones de INCO/CUCEI
 async function getCucei() {
   const channel = client.channels.cache.get("678456371171033088");
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
+  //Obtiene el contenido de Ing.cucei por medio de rss
   let feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa35ffb9559cb480a2b3f100d02.xml');
   let text = feed.items[0].title;
+  let img = feed.items[0].img.$.url;
+  let fuente = feed.items[0].link;
+  //Obtiene el contenido de CUCEI por medio de rss
+  feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa35ffe2e056b5a6a484625e002.xml');
+  let textC = feed.items[0].title;
+  let imgC = feed.items[0].img.$.url;
+  let fuenteC = feed.items[0].link;
   //tomamos los datos mas recientes
   await clientDB.connect(err => {
     if(err) throw err;
@@ -244,16 +252,25 @@ async function getCucei() {
     collection.find({}).toArray(function(err, docs) {
       if(err) throw err;
       if (docs[0].text != text) {
-        let img = feed.items[0].img.$.url;
         collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
           if(err) throw err;
-          console.log("Updated");
-          channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: " + feed.items[0].link);
+          console.log("Updated Ing.Cucei");
+          channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: " + fuente);
           const attachment = new Discord.MessageAttachment(img);
           channel.send(attachment);
         });
       }
-    });      
+      if (docs[0].textC != textC) {
+        collection.updateOne({}, { $set: { "textC" : textC } }, function(err, result) {
+          if(err) throw err;
+          console.log("Updated CUCEI");
+          channel.send("<@&707227755628199937> " + textC + "\n Fuentezaxa: " + fuenteC);
+          const attachment = new Discord.MessageAttachment(imgC);
+          channel.send(attachment);
+        });
+      }
+    }
+    );      
   });
   await clientDB.close();
 }
