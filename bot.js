@@ -28,6 +28,7 @@ client.on("ready", () => {
     })
     .then(console.log)
     .then(getCucei())
+    .then(getGTA())
     .catch(console.error);
   console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -267,6 +268,36 @@ async function getCucei() {
           channel.send("<@&707227755628199937> " + textC + "\n Fuentezaxa: " + fuenteC);
           const attachment = new Discord.MessageAttachment(imgC);
           channel.send(attachment);
+        });
+      }
+    }
+    );      
+  });
+  await clientDB.close();
+}
+
+async function getGTA() {
+  const channel = client.channels.cache.get("678456371171033088");
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  //Obtiene el contenido de GTA Online
+  let feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa3606f113d1592481dca08f132.xml');
+  let textGTA = feed.items[0].title;
+  let desc = feed.items[0].description;
+  let fuente = feed.items[0].link;
+  if(!textGTA.includes("Weekly")) return;
+  //tomamos los datos mas recientes
+  await clientDB.connect(err => {
+    if(err) throw err;
+    const collection = clientDB.db("heroku_pknlh6w2").collection("tabot");
+    console.log("conectado a la DB");
+    collection.find({}).toArray(function(err, docs) {
+      if(err) throw err;
+      if (docs[0].textGTA != textGTA) {
+        collection.updateOne({}, { $set: { "textGTA" : textGTA } }, function(err, result) {
+          if(err) throw err;
+          console.log("Updated GTA");
+          channel.send("<@&455565039718498304> " + desc + "\n Fuentezaxa: " + fuente);
         });
       }
     }
