@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const MongoClient = require('mongodb').MongoClient;
 const uri = process.env.MONGODB_URI;
-const clientDB = new MongoClient(uri, {poolSize: 10, useNewUrlParser: true, useUnifiedTopology: true });
 const Parser = require('rss-parser');
 const parser = new Parser({
   customFields: {
@@ -232,6 +231,7 @@ function randomEmoji() {
 
 //metodo para nuevas publicaciones de INCO/CUCEI
 async function getCucei() {
+  const clientDB = new MongoClient(uri, {poolSize: 10, useNewUrlParser: true, useUnifiedTopology: true });
   const channel = client.channels.cache.get("678456371171033088");
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
@@ -277,6 +277,7 @@ async function getCucei() {
 }
 
 async function getGTA() {
+  const clientDB = new MongoClient(uri, {poolSize: 10, useNewUrlParser: true, useUnifiedTopology: true });
   const channel = client.channels.cache.get("678456371171033088");
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
