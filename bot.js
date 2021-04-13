@@ -284,7 +284,7 @@ async function getGTA() {
   //Obtiene el contenido de GTA Online
   let feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa3606f113d1592481dca08f132.xml');
   let textGTA = feed.items[0].title;
-  let desc = feed.items[0].description;
+  let desc = feed.items[0].content;
   let fuente = feed.items[0].link;
   if(!textGTA.includes("Weekly")) return;
   //tomamos los datos mas recientes
