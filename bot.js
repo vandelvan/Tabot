@@ -282,10 +282,12 @@ async function getGTA() {
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
   //Obtiene el contenido de GTA Online
-  let feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa3606f113d1592481dca08f132.xml');
+  let feed = await parser.parseURL('https://www.reddit.com/r/gtaonline.rss');
   let textGTA = feed.items[0].title;
   let desc = feed.items[0].content;
   let fuente = feed.items[0].link;
+  desc = desc.replace(/<[^>]*>?/gm, '');
+  desc = desc.replace(/\[[^\]]*\]?/gm, '');
   if(!textGTA.includes("Weekly")) return;
   //tomamos los datos mas recientes
   await clientDB.connect(err => {
