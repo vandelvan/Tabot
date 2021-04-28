@@ -239,12 +239,18 @@ async function getCucei() {
   let feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa35ffb9559cb480a2b3f100d02.xml');
   let text = feed.items[0].title;
   let img = feed.items[0].img.$.url;
+  let desc = feed.items[0].content;
   let fuente = feed.items[0].link;
+  desc = desc.replace(/<[^>]*>?/gm, '');
+  desc = desc.replace(/\[[^\]]*\]?/gm, '');
   //Obtiene el contenido de CUCEI por medio de rss
   feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa35ffe2e056b5a6a484625e002.xml');
   let textC = feed.items[0].title;
   let imgC = feed.items[0].img.$.url;
+  let descC = feed.items[0].content;
   let fuenteC = feed.items[0].link;
+  descC = descC.replace(/<[^>]*>?/gm, '');
+  descC = descC.replace(/\[[^\]]*\]?/gm, '');
   //tomamos los datos mas recientes
   await clientDB.connect(err => {
     if(err) throw err;
@@ -256,7 +262,7 @@ async function getCucei() {
         collection.updateOne({}, { $set: { "text" : text } }, function(err, result) {
           if(err) throw err;
           console.log("Updated Ing.Cucei");
-          channel.send("<@&707227755628199937> " + text + "\n Fuentezaxa: " + fuente);
+          channel.send("<@&707227755628199937> " + text + "\n" +  desc + "\n Fuentezaxa: " + fuente);
           const attachment = new Discord.MessageAttachment(img);
           channel.send(attachment);
         });
@@ -265,7 +271,7 @@ async function getCucei() {
         collection.updateOne({}, { $set: { "textC" : textC } }, function(err, result) {
           if(err) throw err;
           console.log("Updated CUCEI");
-          channel.send("<@&707227755628199937> " + textC + "\n Fuentezaxa: " + fuenteC);
+          channel.send("<@&707227755628199937> " + textC + "\n" + descC + "\n Fuentezaxa: " + fuenteC);
           const attachment = new Discord.MessageAttachment(imgC);
           channel.send(attachment);
         });
