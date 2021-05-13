@@ -12,13 +12,6 @@ const parser = new Parser({
   }
 });
 
-var lastCommitDeco = "";
-var autorDeco = "";
-var cambioDeco = "";
-var lastCommitData = "";
-var autorData = "";
-var cambioData = "";
-
 // Event listener when a user connected to the server.
 client.on("ready", () => {
   client.user
@@ -89,6 +82,16 @@ client.on("message", async (msg) => {
   ) {
     msg.reply("Cual?");
     msg.reply(randomTavo());
+  }else if (
+    msg.content.toLowerCase().includes("sus") ||
+    msg.content.toLowerCase().includes("among") ||
+    msg.content.toLowerCase().includes("drip") ||
+    msg.content.toLowerCase().includes("amog") ||
+    msg.content.toLowerCase().includes("vent") ||
+    msg.content.toLowerCase().includes("impost")
+  ) {
+    msg.reply("AMUGUS");
+    msg.reply(randomTavo());
   }
   if (
     msg.content.toLowerCase().includes("cancion") ||
@@ -157,6 +160,13 @@ function randomTavo() {
     "la panzona",
     "sabroso",
     "pana sonic",
+    "sus",
+    "di su goma al reves",
+    "amogus",
+    "quien lo diría?",
+    "caon",
+    "caon el amongus",
+    "di invented sin la n"
   ];
   var no = Math.floor(Math.random() * frases.length);
   var frase = frases[no];
@@ -201,6 +211,14 @@ function randomImg() {
     "https://media.makeameme.org/created/c-kronk.jpg",
     "https://i.ytimg.com/vi/N1z9k2R3hww/maxresdefault.jpg",
     "https://i.redd.it/ul95f16s5eh41.jpg",
+    "https://media.tenor.com/images/8401102bb79891d25fe495146df75252/tenor.png",
+    "https://i1.sndcdn.com/artworks-TOJJyHynzM0iRSuW-9URBDA-t500x500.jpg",
+    "https://i1.sndcdn.com/artworks-hcMJWmi0fxarCNFj-59LfMA-t500x500.jpg",
+    "https://i.imgflip.com/50i42a.png",
+    "https://i.kym-cdn.com/photos/images/newsfeed/002/025/085/fe6.jpg",
+    "https://i.redd.it/rtq1tph23wq61.png",
+    "https://i.kym-cdn.com/photos/images/newsfeed/002/024/944/6f2.png",
+    "https://i.kym-cdn.com/photos/images/newsfeed/001/966/362/177.jpg"
   ];
   var no = Math.floor(Math.random() * imgs.length);
   var img = imgs[no];
@@ -223,6 +241,15 @@ function randomEmoji() {
     "🗿",
     "😍",
     "🖕",
+    "<:nopapu:841022501022728192>",
+    "<:cholicoyes:841022080156696616>",
+    "<:cholico:760863824752017448>",
+    "<:cholicono:766651952028188702>",
+    "<:farfan:820003689719922689>",
+    "<:ustemamele:662528350362796042>",
+    "<:eleazar:512829263171289098>",
+    "<:topo:512830005299118081>",
+    "<:ceballos:512829530084212743>"
   ];
   var no = Math.floor(Math.random() * emoji.length);
   var em = emoji[no];
