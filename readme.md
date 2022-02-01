@@ -1,8 +1,10 @@
-Hace ya un rato que tenia ganas de hacer un bot, aunque fuera algo tonto e inutil, hoy lo hice y ya esta en linea 24/7
+## Tabot
+Discord bot made with Node.js that provides us with our university's latest updates from Facebook.
+Used to use web-scraping with puppeteer to get the news from Facebook but Facebook constantly changed to prevent this so we turned to RSS.
 
-Hace algunos años Daniel, Antonio y yo discutíamos acerca de realizar un simulador de Gustavo inspirados por sus incoherencias, ya que el en persona es como una caracola magica, le preguntas algo y responde algo aleatorio.
+### Backstory:
+I've wanted to make a bot for fun since a while back, today I made it and it's online 24/7
+Some years ago some friends and I were arguing about developing a "Gustavo simulator" inspired by his nonsense since in person it's like a magic conch (Like the one from SpongeBob), you ask him something and he replies something random.
+Remembering this story, I developed a "Tabot" which by calling him by his name "Tavo" and some misspelled variations he will reply with some of his "famous sayings".
 
-Recordando esto, desarrollé un "Tabot" el cual al llamarlo diciendo "tavo", "tabo", "tavotas" o "tabotas" respondera con alguna de sus frases celebres
-
-añadanlo a su servidor de discord aquí: https://discordapp.com/oauth2/authorize?&client_id=638078895857598465&scope=bot&permissions=8
-
+Thanks to [@piloalucard](https://github.com/piloalucard) for inspiring this project and for all the fun he has given to us through the years!
