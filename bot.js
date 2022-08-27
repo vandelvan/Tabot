@@ -265,7 +265,14 @@ async function getCucei() {
   //Obtiene el contenido de Ing.cucei por medio de rss
   let feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa35ffb9559cb480a2b3f100d02.xml');
   let text = feed.items[0].title;
-  let img = feed.items[0].img.$.url;
+  let img;
+  if (feed.items[0].img){
+    img = feed.items[0].img.$.url;
+  }
+  else
+  {
+    img = "https://scontent.fgdl11-1.fna.fbcdn.net/v/t39.30808-6/298738533_5286314941405582_2362797853950170749_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGnIK8qUAk-ZkWuq-UpchrbBtqtdvTOBxkG2q129M4HGRl8yZA-5xnLLdBOLQKYxZwd8kpX3QRIRkpR8RV3OUjG&_nc_ohc=62oKYqTtJ9kAX9Ly06M&_nc_ht=scontent.fgdl11-1.fna&oh=00_AT-0LQ6SQdH0y-9E4EWX9RnquCY9NIvgCk4pVN1b6AxH9Q&oe=630D7DBF"
+  }
   let desc = feed.items[0].content;
   let fuente = feed.items[0].link;
   desc = desc.replace(/<[^>]*>?/gm, '');
@@ -273,7 +280,14 @@ async function getCucei() {
   //Obtiene el contenido de CUCEI por medio de rss
   feed = await parser.parseURL('http://fetchrss.com/rss/5ffb954a9d11d1118f1a7fa35ffe2e056b5a6a484625e002.xml');
   let textC = feed.items[0].title;
-  let imgC = feed.items[0].img.$.url;
+  let imgC;
+  if (feed.items[0].img){
+    imgC = feed.items[0].img.$.url;
+  }
+  else
+  {
+    imgC = "https://scontent.fgdl11-1.fna.fbcdn.net/v/t39.30808-6/291634417_5174062346018090_3160842060629917700_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeG2DKXYHAZjiRmq06Z1F9t78KJ0NyHg0r3wonQ3IeDSvQEm13oyLS02UfasIKJ0OjTBUxy2LCSDEhEvFEG0LIaJ&_nc_ohc=Qtl74ebBpOAAX8tNwGo&_nc_ht=scontent.fgdl11-1.fna&oh=00_AT_9r5zE0mKRQLovcYnHA_YXNyp3B2M7eJ82rZyGISgnWg&oe=630E6C9D"
+  }
   let descC = feed.items[0].content;
   let fuenteC = feed.items[0].link;
   descC = descC.replace(/<[^>]*>?/gm, '');
